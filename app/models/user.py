@@ -1,6 +1,8 @@
+from sqlalchemy.orm import backref, relationship
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlaclhemy.orm import relationship
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -9,6 +11,10 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
+  avatar_url = db.Column(db.String)
+  
+  #Association
+  user_note = relationship("Note", backref="note_user", cascade="all, delete")
 
 
   @property
@@ -32,5 +38,7 @@ class User(db.Model, UserMixin):
     return {
       "id": self.id,
       "username": self.username,
-      "email": self.email
+      "email": self.email,
+      "avatar_url": self.avatar_url,
+      "notes": [note.to_dict() for note in self.user_note],
     }
