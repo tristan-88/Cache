@@ -7,7 +7,7 @@ class Note(db.Model):
     id= db.Column(db.Integer, primary_key = True)
     content = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    color = db.Column(db.String)
+    color = db.Column(db.String, default="white")
     archived = db.Column(db.Boolean, default=False, nullable=False)
     pinned = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)

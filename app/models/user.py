@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-  avatar_url = db.Column(db.String)
+  avatar_url = db.Column(db.String, default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png")
   
   #Association
   user_note = relationship("Note", backref="note_user", cascade="all, delete")
