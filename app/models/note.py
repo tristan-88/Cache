@@ -5,6 +5,7 @@ from datetime import date, datetime
 class Note(db.Model):
     __tablename__ = "notes"
     id= db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(100))
     content = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     color = db.Column(db.String, default="white")
@@ -16,6 +17,7 @@ class Note(db.Model):
 def to_dict(self):
     return{
         "id": self.id,
+        "title": self.title,
         "content": self.content,
         "user_id": self.user_id,
         "color": self.color,
