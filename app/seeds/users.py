@@ -20,7 +20,7 @@ def seed_users():
             username=f'{faker.first_name()}{faker.random_int(0, 99)}',
             email=faker.safe_email(),
             password="password",
-            avatar_url=f'{faker.Avatar.image_url(800,600)}'
+            avatar_url=f'{faker.image_url(500, 500)}'
         )
         db.session.add(other)
     db.session.commit()

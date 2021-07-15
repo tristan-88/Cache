@@ -1,5 +1,5 @@
 from .db import db
-from sqlaclhemy.orm import relationship
+from sqlalchemy.orm import relationship
 from datetime import date, datetime
 
 class Note(db.Model):
