@@ -4,6 +4,8 @@ from datetime import date, datetime
 
 class Note(db.Model):
     __tablename__ = "notes"
+    
+    
     id= db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(100))
     content = db.Column(db.Text)
@@ -14,14 +16,14 @@ class Note(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     
 
-def to_dict(self):
-    return{
-        "id": self.id,
-        "title": self.title,
-        "content": self.content,
-        "user_id": self.user_id,
-        "color": self.color,
-        "archived": self.archived,
-        "pinned": self.pinned,
-        "created_at": self.created_at,
-    }
+    def to_dict(self):
+        return{
+            "id": self.id,
+            "title": self.title,
+            "content": self.content,
+            "user_id": self.user_id,
+            "color": self.color,
+            "archived": self.archived,
+            "pinned": self.pinned,
+            "created_at": self.created_at,
+        }
