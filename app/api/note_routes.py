@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Note
+from app.models import db, Note
 from app.forms import NoteForm
 from sqlalchemy import desc, asc
 from datetime import datetime
@@ -27,7 +27,7 @@ def get_archive_notes():
 
 @note_routes.route('/pinned')
 @login_required
-def get_archive_notes():
+def get_pinned_notes():
     notes = Note.query.filter(Note.pinned == True).all()
     return {"notes":{note.id: note.to_dict() for note in notes}}
 
@@ -56,8 +56,8 @@ def post_note():
 
 @note_routes.route('/', methods=["PATCH"])
 @login_required
-def post_note():
-    note_id = request.json('noteId')
+def update_note():
+    note_id = request.json['noteId']
     new_title = request.json['title']
     new_content = request.json['content']
     new_color = request.json["color"]
@@ -73,4 +73,16 @@ def post_note():
     current_note.created_at = datetime.utcnow
     db.session.commit()
     return {"note": current_note.to_dict()}
+
+
+@note_routes('/', methods["DELETE"])
+@login_required
+def delete_note():
+    note_id = request.json["noteId"]
+    note = Note.query.filter(Note.id == note_id and Note.archived == True).first()
+    db.session.delete(note)
+    db.session.commit()
+    return {'message': "note has been deleted"}
+    
+    
     
