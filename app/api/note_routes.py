@@ -75,7 +75,7 @@ def update_note():
     return {"note": current_note.to_dict()}
 
 
-@note_routes('/', methods["DELETE"])
+@note_routes('/', methods=["DELETE"])
 @login_required
 def delete_note():
     note_id = request.json["noteId"]
