@@ -54,10 +54,10 @@ def post_note():
     db.session.commit()
     return {"note": note.to_dict()}
 
-@note_routes.route('/', methods=["PATCH"])
+#update id to be passed in route
+@note_routes.route('/<int:note_id>', methods=["PATCH"])
 @login_required
-def update_note():
-    note_id = request.json['noteId']
+def update_note(note_id):
     new_title = request.json['title']
     new_content = request.json['content']
     new_color = request.json["color"]
@@ -75,10 +75,9 @@ def update_note():
     return {"note": current_note.to_dict()}
 
 
-@note_routes('/', methods=["DELETE"])
+@note_routes.route('/<int:note_id>', methods=["DELETE"])
 @login_required
-def delete_note():
-    note_id = request.json["noteId"]
+def delete_note(note_id):
     note = Note.query.filter(Note.id == note_id and Note.archived == True).first()
     db.session.delete(note)
     db.session.commit()
