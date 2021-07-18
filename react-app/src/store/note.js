@@ -172,7 +172,11 @@ export default function noteReducer(state = initialState, action) {
         }
         newState.pinned[action.payload.id] = action.payload;
       }
-      return newState;
+          return newState;
+      case POST_NOTE:
+          newState = Object.assign({}, state)
+          newState.notes[action.payload.id] = action.payload
+          return newState
     default:
       return state;
   }
