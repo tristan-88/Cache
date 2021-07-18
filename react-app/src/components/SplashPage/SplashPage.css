@@ -1,0 +1,20 @@
+.splash-container {
+  background-image: url("../../images/amanda-jones-feLC4ZCxGqk-unsplash.jpg");
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
+  position: absolute;
+}
+
+.title-access{
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
