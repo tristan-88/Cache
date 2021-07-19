@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { getAllNotes, getPinnedNotes } from "../../store/note";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
+import "./MainPage.css";
 
 function MainPage(props) {
   const dispatch = useDispatch();
@@ -25,42 +26,48 @@ function MainPage(props) {
 
   return (
     <div>
-      <h1>Notes</h1>
-      {notes &&
-        Object.values(notes).map((note) => {
-          if (
-            note.archived === false &&
-            note.pinned === false &&
-            user.id === note.user_id
-          ) {
-            return (
-              <div
-                className="note-div"
-                style={{ backgroundColor: `${note.color}` }}
-              >
-                {note.content}
-              </div>
-            );
-          }
-        })}
-      <h1>Pinned Notes</h1>
-      {notes &&
-        Object.values(notes).map((note) => {
-          if (
-            note.archived === false &&
-            note.pinned === true &&
-            user.id === note.user_id
-          ) {
-            return (
-              <div
-                className="note-div"
-                style={{ backgroundColor: `${note.color}` }}
-              >
-                {note.content}
-              </div>
-            );
-          }
-        })}
+      <div className="notes-container">
+        <h1>Notes:</h1>
+        {notes &&
+          Object.values(notes).map((note) => {
+            if (
+              note.archived === false &&
+              note.pinned === false &&
+              user.id === note.user_id
+            ) {
+              return (
+                <div
+                  key={note.id}
+                  className="note-div"
+                  style={{ backgroundColor: `${note.color}` }}
+                >
+                  <div className="note-content">{note.content}</div>
+                </div>
+              );
+            }
+          })}
+      </div>
+      <div className="pinned-container">
+        {" "}
+        <h1>Pinned Notes:</h1>
+        {notes &&
+          Object.values(notes).map((note) => {
+            if (
+              note.archived === false &&
+              note.pinned === true &&
+              user.id === note.user_id
+            ) {
+              return (
+                <div
+                  className="note-div"
+                  style={{ backgroundColor: `${note.color}` }}
+                >
+                  <div className="note-content">{note.content}</div>
+                </div>
+              );
+            }
+          })}
+      </div>
     </div>
   );
 }
