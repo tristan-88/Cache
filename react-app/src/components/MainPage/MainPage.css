@@ -1,12 +1,13 @@
 .note-div {
   width: 12rem;
   height: 12rem;
-  border: 0.1em outset black;
+  border: 0.2em inset black;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   padding: 1rem;
+  box-shadow: 2px 20px 20px -7px rgba(12, 12, 12, 0.35);
 }
 
 .note-content {
@@ -18,6 +19,7 @@
   height: 5.5rem;
   align-items: center;
   padding: 0.3rem;
+  text-align: center;
 }
 
 .notes-container {
@@ -26,6 +28,7 @@
   height: 50%;
   display: flex;
   justify-content: space-evenly;
+  
 }
 
 .pinned-container {
