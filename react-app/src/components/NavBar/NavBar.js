@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import LogoutButton from "../auth/LogoutButton";
 
 const NavBar = () => {
-  const user = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.session.user ? state.session.user: null);
  
   return (
     <nav>

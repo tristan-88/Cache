@@ -46,9 +46,9 @@ const getPinned = (notes) => ({
 //thunks
 export const getAllNotes = () => async (dispatch) => {
   const response = await axios.get("/api/notes/");
-  const notes = response.data;
+  const data = response.data;
   if (response.status === 200) {
-    dispatch(getNotes(notes));
+    dispatch(getNotes(data.notes));
     return response;
   }
 };

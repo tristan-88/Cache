@@ -6,7 +6,7 @@ import note from './note'
 
 const rootReducer = combineReducers({
     session,
-    note
+    note,
 });
 
 let enhancer;

@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User/User"
 import SplashPage from "./components/SplashPage/SplashPage";
+import MainPage from "./components/MainPage/MainPage";
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 
@@ -42,6 +43,9 @@ function App() {
         </Route>
         <ProtectedRoute path="/users/:id" exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path="/main" exact={true} >
+          <MainPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

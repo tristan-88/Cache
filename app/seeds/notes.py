@@ -10,14 +10,14 @@ boolean = [True, False]
 
 def seed_notes():
     
-    for i in range(20):
+    for i in range(100):
         note = Note(
             title = faker.word(),
             content = faker.sentence(),
             user_id = faker.random_int(1, 10),
             color = random.choice(colors), #random.choice gives a random value from iterable passed inside
             archived = random.choice(boolean),
-            pinned = random.choice(boolean),
+            pinned = random.choice(boolean), 
             created_at = now.strftime("%Y-%m-%d %H:%M:%S")
         )
         db.session.add(note)
