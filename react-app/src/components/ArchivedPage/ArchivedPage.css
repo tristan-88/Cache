@@ -1,0 +1,35 @@
+.note-div {
+  width: 12rem;
+  height: 12rem;
+  border: 0.2em inset black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 1rem;
+  box-shadow: 2px 20px 20px -7px rgba(12, 12, 12, 0.35);
+  margin: 1rem;
+  border-radius: 10%;
+}
+
+.note-content {
+  -webkit-backdrop-filter: blur(20px);
+  background-color: rgba(230, 230, 230, 0.322);
+  backdrop-filter: blur(165px);
+  display: flex;
+  width: 10.5rem;
+  height: 5.5rem;
+  align-items: center;
+  padding: 0.3rem;
+  text-align: center;
+}
+
+.archived-container {
+  margin: 2rem;
+  width: 90%;
+  height: 50%;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  background-color: lavenderblush;
+}
