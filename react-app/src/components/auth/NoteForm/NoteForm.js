@@ -1,23 +1,29 @@
 import "./NoteForm.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { postingNote } from "../../../store/note";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const NoteForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [archived, setArchived] = useState(false);
   const [pinned, setPinned] = useState(false);
   const [color, setColor] = useState("white");
+  const [close, setClose] = useState(false);
 
   const onPostNote = async (e) => {
     e.preventDefault();
     if (user) {
       await dispatch(postingNote(content, title, color, archived, pinned));
     }
+  };
+
+  const close = () => {
+    setClose(true);
   };
 
   const postTitle = (e) => {
@@ -39,6 +45,12 @@ const NoteForm = () => {
       setArchived(false);
     }
   };
+
+  useEffect =
+    (() => {
+      setClose(false);
+    },
+    [close]);
 
   const postPinned = (e) => {
     if (pinned === false) {
@@ -63,7 +75,7 @@ const NoteForm = () => {
         <input
           type="text"
           name="Content"
-          onChange={postTitle}
+          onChange={postContent}
           value={title}
         ></input>
       </div>
@@ -161,7 +173,7 @@ const NoteForm = () => {
         </button>
       </div>
       <div className="submit-button">
-        <button className="button-close" type="submit">
+        <button className="button-close" type="submit" onClick={close}>
           <i class="fas fa-times"></i>
         </button>
       </div>
