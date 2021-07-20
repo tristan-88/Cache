@@ -48,7 +48,6 @@ function MainPage(props) {
           })}
       </div>
       <div className="pinned-container">
-        {" "}
         <h1>Pinned Notes:</h1>
         {notes &&
           Object.values(notes).map((note) => {
