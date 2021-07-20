@@ -20,4 +20,3 @@ class NoteForm(FlaskForm):
     archived = BooleanField("Archived", false_values=None)
     pinned = BooleanField("Pinned", false_values=None)
     
-    
