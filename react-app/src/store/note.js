@@ -54,17 +54,17 @@ export const getAllNotes = () => async (dispatch) => {
 };
 export const getArchivedNotes = () => async (dispatch) => {
   const response = await axios.get("/api/notes/archive");
-  const notes = response.data;
+  const data = response.data;
   if (response.status === 200) {
-    dispatch(getArchived(notes));
+    dispatch(getArchived(data.notes));
     return response;
   }
 };
 export const getPinnedNotes = () => async (dispatch) => {
   const response = await axios.get("/api/notes/pinned");
-  const notes = response.data;
+  const data = response.data;
   if (response.status === 200) {
-    dispatch(getPinned(notes));
+    dispatch(getPinned(data.notes));
     return response;
   }
 };

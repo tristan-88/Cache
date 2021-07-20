@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User/User"
 import SplashPage from "./components/SplashPage/SplashPage";
 import MainPage from "./components/MainPage/MainPage";
+import ArchivedPage from "./components/ArchivedPage/ArchivedPage";
 // import { authenticate } from "./services/auth";
 import { authenticate } from "./store/session";
 
@@ -46,6 +47,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/main" exact={true} >
           <MainPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/archived" exact={true} >
+          <ArchivedPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
