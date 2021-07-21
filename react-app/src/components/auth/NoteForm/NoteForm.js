@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { postingNote } from "../../../store/note";
 import React, { useState, useEffect } from "react";
+import * as colorAction  from "../../../store/color"
+
 
 const NoteForm = () => {
   const dispatch = useDispatch();
@@ -14,7 +16,8 @@ const NoteForm = () => {
   const [pinned, setPinned] = useState(false);
   const [color, setColor] = useState("white");
   const [close, setClose] = useState(false);
-  const [checkedCircle, setCheckCircle] = useState("white");
+    const [checkedCircle, setCheckCircle] = useState("white");
+    const {settingColor} = colorAction
 
   const onPostNote = async (e) => {
     e.preventDefault();
@@ -23,8 +26,9 @@ const NoteForm = () => {
     }
   };
 
-  const clickCircle = (color) => {
-    setCheckCircle(color);
+    const clickCircle = async (color) => {
+        setCheckCircle(color)
+  
   };
 
   const onClose = () => {
@@ -55,6 +59,10 @@ const NoteForm = () => {
     if (close === true) {
       setClose(false);
     }
+      if (color === checkedCircle) {
+        dispatch(settingColor(color))
+    }
+      
   }, [close, color, checkedCircle]);
 
   const postPinned = (e) => {
@@ -66,7 +74,7 @@ const NoteForm = () => {
   };
 
   return (
-    <div className="form-container" style={{ backgroundColor: color }}>
+      <div className="form-container" style={{backgroundColor: `${checkedCircle}` }} >
       <form onSubmit={onPostNote}>
         <div className="pinned-button">
           <button

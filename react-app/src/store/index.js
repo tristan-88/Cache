@@ -2,11 +2,13 @@ import {createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from 'redux-thunk';
 import session from './session'
 import note from './note'
+import color from './color'
 
 
 const rootReducer = combineReducers({
     session,
     note,
+    color,
 });
 
 let enhancer;
