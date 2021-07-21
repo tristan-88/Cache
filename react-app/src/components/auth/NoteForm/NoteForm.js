@@ -14,12 +14,17 @@ const NoteForm = () => {
   const [pinned, setPinned] = useState(false);
   const [color, setColor] = useState("white");
   const [close, setClose] = useState(false);
+  const [checkedCircle, setCheckCircle] = useState("white");
 
   const onPostNote = async (e) => {
     e.preventDefault();
     if (user) {
       await dispatch(postingNote({ title, content, color, archived, pinned }));
     }
+  };
+
+  const clickCircle = (color) => {
+    setCheckCircle(color);
   };
 
   const onClose = () => {
@@ -50,7 +55,7 @@ const NoteForm = () => {
     if (close === true) {
       setClose(false);
     }
-  }, [close, color]);
+  }, [close, color, checkedCircle]);
 
   const postPinned = (e) => {
     if (pinned === false) {
@@ -59,6 +64,7 @@ const NoteForm = () => {
       setPinned(false);
     }
   };
+
   return (
     <div className="form-container" style={{ backgroundColor: color }}>
       <form onSubmit={onPostNote}>
@@ -101,9 +107,12 @@ const NoteForm = () => {
           />
           <label for="radioWhite">
             <div
-              className="color-circle"
+              className="color-circle white"
               style={{ backgroundColor: "white" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "white" ? <i class="fas fa-check"></i> : ""}{" "}
+            </div>
           </label>
           <input
             type="radio"
@@ -113,11 +122,14 @@ const NoteForm = () => {
             checked={color == "red"}
             id="radioRed"
           />
-          <label for="radioRed">
+          <label for="radioRed" className="label-red">
             <div
-              className="color-circle"
+              className="color-circle red"
               style={{ backgroundColor: "red" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "red" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -129,9 +141,12 @@ const NoteForm = () => {
           />
           <label for="radioBlue">
             <div
-              className="color-circle"
+              className="color-circle blue"
               style={{ backgroundColor: "blue" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "blue" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -143,9 +158,12 @@ const NoteForm = () => {
           />
           <label for="radioYellow">
             <div
-              className="color-circle"
+              className="color-circle yellow"
               style={{ backgroundColor: "yellow" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "yellow" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -154,12 +172,15 @@ const NoteForm = () => {
             onClick={() => setColor("teal")}
             checked={color == "teal"}
             id="radioTeal"
-          />{" "}
+          />
           <label for="radioTeal">
             <div
-              className="color-circle"
+              className="color-circle teal"
               style={{ backgroundColor: "teal" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "teal" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -171,9 +192,12 @@ const NoteForm = () => {
           />
           <label for="radioPurple">
             <div
-              className="color-circle"
+              className="color-circle purple"
               style={{ backgroundColor: "purple" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "purple" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -185,9 +209,12 @@ const NoteForm = () => {
           />
           <label for="radioPink">
             <div
-              className="color-circle"
+              className="color-circle pink"
               style={{ backgroundColor: "pink" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "pink" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -199,9 +226,12 @@ const NoteForm = () => {
           />
           <label for="radioGreen">
             <div
-              className="color-circle"
+              className="color-circle green"
               style={{ backgroundColor: "green" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "green" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -213,9 +243,12 @@ const NoteForm = () => {
           />{" "}
           <label for="radioGray">
             <div
-              className="color-circle"
+              className="color-circle gray"
               style={{ backgroundColor: "gray" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "gray" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -224,12 +257,15 @@ const NoteForm = () => {
             onClick={() => setColor("brown")}
             checked={color == "brown"}
             id="radioBrown"
-          />{" "}
+          />
           <label for="radioBrown">
             <div
-              className="color-circle"
+              className="color-circle brown"
               style={{ backgroundColor: "brown" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "brown" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -241,9 +277,12 @@ const NoteForm = () => {
           />
           <label for="radioOrange">
             <div
-              className="color-circle"
+              className="color-circle orange"
               style={{ backgroundColor: "orange" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "orange" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
           <input
             type="radio"
@@ -255,9 +294,12 @@ const NoteForm = () => {
           />
           <label for="radioDarkBlue">
             <div
-              className="color-circle"
+              className="color-circle darkblue"
               style={{ backgroundColor: "darkblue" }}
-            ></div>
+              onClick={() => clickCircle(color)}
+            >
+              {checkedCircle === "darkblue" ? <i class="fas fa-check"></i> : ""}
+            </div>
           </label>
         </div>
         <div className="archived-button">
@@ -269,12 +311,12 @@ const NoteForm = () => {
             <i class="fas fa-archive"></i>
           </button>
         </div>
-        <div className="submit-button">
+        <div className="post-button">
           <button className="button-post" type="submit">
             Post
           </button>
         </div>
-        <div className="submit-button">
+        <div className="close-button">
           <button className="button-close" type="submit" onClick={onClose}>
             <i class="fas fa-times"></i>
           </button>

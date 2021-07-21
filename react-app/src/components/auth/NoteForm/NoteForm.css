@@ -1,6 +1,6 @@
 .form-container{
-  width: 20rem;
-  height: 20rem;
+  width: 25rem;
+  height: 25rem;
   border: 0.2em inset black;
   display: flex;
   justify-content: center;
@@ -19,6 +19,11 @@
     border: 0.1em solid black;
     border-radius: 50%;
 }
+
+/* .label-red:hover{
+    background-color: aqua;
+
+} */
 
 
 
@@ -52,4 +57,35 @@ input#radioTeal{
     display: flex;
     justify-content: flex-end;
     padding: 0.5em;
+}
+
+.post-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 8em;
+}
+.button-post{
+    font-size: x-large;
+}
+
+.button-archived,
+.button-pinned,
+.button-post,
+.button-close{
+    background: none;
+    border: none;
+    
+}
+
+.close-button{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.fas{
+    font-size: xx-large;
+}
+.fa-check{
+    font-size: x-large;
 }

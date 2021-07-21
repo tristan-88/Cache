@@ -9,3 +9,5 @@ function ColorCircle({ color }) {
         value={color}  ></div>
     )
 }
+
+export default ColorCircle
