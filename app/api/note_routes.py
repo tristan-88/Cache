@@ -1,9 +1,12 @@
+import pprint
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Note
 from app.forms import NoteForm
 from sqlalchemy import desc, asc
 from datetime import datetime
+
+p_p = pprint.PrettyPrinter()
 
 note_routes = Blueprint('notes', __name__)
 
@@ -35,6 +38,8 @@ def get_pinned_notes():
 @note_routes.route('/', methods=["POST"])
 @login_required
 def post_note():
+    p_p.pprint(request.__dict__)
+    print("request!@##$$$")
     new_title = request.json['title']
     new_content = request.json['content']
     new_color = request.json["color"]
@@ -47,8 +52,6 @@ def post_note():
         color = new_color,
         archived = new_archived,
         pinned = new_pinned,
-        created_at = datetime.utcnow
-        
     )
     db.session.add(note)
     db.session.commit()
@@ -70,7 +73,7 @@ def update_note(note_id):
     current_note.color = new_color,
     current_note.archived = new_archived,
     current_note.pinned = new_pinned,
-    current_note.created_at = datetime.utcnow
+    current_note.updated_at = datetime.utcnow()
     db.session.commit()
     return {"note": current_note.to_dict()}
 

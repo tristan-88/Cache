@@ -3,6 +3,7 @@ import { getAllNotes, getPinnedNotes } from "../../store/note";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import "./MainPage.css";
+import NoteForm  from "../auth/NoteForm/NoteForm";
 
 function MainPage(props) {
   const dispatch = useDispatch();
@@ -25,8 +26,10 @@ function MainPage(props) {
   }, []);
 
   return (
-    <div>
-      <div className="notes-container">
+      <div>
+          <NoteForm />
+          <div className="notes-container">
+            
         <h1>Notes:</h1>
         {notes &&
           Object.values(notes).map((note) => {

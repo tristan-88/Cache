@@ -70,7 +70,7 @@ export const getPinnedNotes = () => async (dispatch) => {
 };
 
 export const postingNote =
-  ({ content, title, color, archived, pinned }) =>
+  ({title, content, color, archived, pinned }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/`, {
       method: "POST",

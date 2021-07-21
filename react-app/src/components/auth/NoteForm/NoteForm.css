@@ -1,0 +1,55 @@
+.form-container{
+  width: 20rem;
+  height: 20rem;
+  border: 0.2em inset black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 1rem;
+  box-shadow: 2px 20px 20px -7px rgba(12, 12, 12, 0.35);
+  margin: 1rem;
+  border-radius: 10%;
+}
+
+
+.color-circle{
+    width: 1.5em;
+    height: 1.5em;
+    border: 0.1em solid black;
+    border-radius: 50%;
+}
+
+
+
+input#radioRed,
+input#radioBlue,
+input#radioWhite,
+input#radioYellow,
+input#radioGreen,
+input#radioPink,
+input#radioPurple,
+input#radioBrown,
+input#radioDarkBlue,
+input#radioOrange,
+input#radioGray,
+input#radioTeal{
+    display: hidden;
+    opacity: 0;
+    margin: 1em;
+}
+
+.radio-color {
+    display: flex;
+    padding: 1em;
+    margin: 1em;
+    width: 17em;
+    height: 1em;
+    flex-flow: wrap;
+}
+
+.pinned-button {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5em;
+}

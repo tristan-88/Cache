@@ -1,0 +1,7 @@
+
+.color-circle{
+    width: 1em;
+    height: 1em;
+    border: 0.1em solid black;
+    border-radius: 50%;
+}

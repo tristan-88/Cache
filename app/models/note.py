@@ -13,7 +13,8 @@ class Note(db.Model):
     color = db.Column(db.String, default="white")
     archived = db.Column(db.Boolean, default=False, nullable=False)
     pinned = db.Column(db.Boolean, default=False, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow(), nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow(), nullable=False)
     
 
     def to_dict(self):
@@ -26,4 +27,5 @@ class Note(db.Model):
             "archived": self.archived,
             "pinned": self.pinned,
             "created_at": self.created_at,
+            "updated_at": self.updated_at,
         }
