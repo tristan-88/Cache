@@ -11,11 +11,6 @@ const NavBar = () => {
       {!user && (
         <React.Fragment>
           <div>
-            <NavLink to="/" exact={true} activeClassName="active">
-              Home
-            </NavLink>
-          </div>
-          <div>
             <NavLink to="/login" exact={true} activeClassName="active">
               Login
             </NavLink>
@@ -25,12 +20,16 @@ const NavBar = () => {
               Sign Up
             </NavLink>
           </div>
-          
         </React.Fragment>
       )}
       {user && (
-        <ul>
-          <li>
+        <div>
+          <div>
+            <NavLink to="/" exact={true} activeClassName="active">
+              Main
+            </NavLink>
+          </div>
+          <div>
             <NavLink
               to={`/users/${user.id}`}
               exact={true}
@@ -38,13 +37,17 @@ const NavBar = () => {
             >
               Users
             </NavLink>
-          </li>
-        <li>
-          <LogoutButton />
-        </li>
-      </ul> 
+          </div>
+          <div>
+            <NavLink to={`/archived`} exact={true} activeClassName="active">
+              Archived
+            </NavLink>
+          </div>
+          <div>
+            <LogoutButton />
+          </div>
+        </div>
       )}
-      
     </nav>
   );
 };
