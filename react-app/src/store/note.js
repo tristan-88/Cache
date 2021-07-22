@@ -126,7 +126,7 @@ export const deletingNote = (noteId) => async (dispatch) => {
 const initialState = {
   notes: null,
   archived: null,
-    pinned: null,
+  pinned: null,
   update: false,
 };
 
@@ -238,23 +238,23 @@ export default function noteReducer(state = initialState, action) {
       return newState;
     case POST_NOTE:
       newState = Object.assign({}, state);
-          if (action.payload.archived === true) {
-              if (newState.archived === null) {
-                  newState.archived = []
-          }
+      if (action.payload.archived === true) {
+        if (newState.archived === null) {
+          newState.archived = [];
+        }
         newState.archived.push(action.payload);
-          } else if (action.payload.pinned === true) {
-              if (newState.pinned === null) {
-                  newState.pinned = []
-              }
+      } else if (action.payload.pinned === true) {
+        if (newState.pinned === null) {
+          newState.pinned = [];
+        }
         newState.pinned.push(action.payload);
-          } else {
-              if (newState.notes === null) {
-                  newState.notes = []
-              }
+      } else {
+        if (newState.notes === null) {
+          newState.notes = [];
+        }
         newState.notes.push(action.payload);
-          }
-          newState.update = !newState.update 
+      }
+      newState.update = !newState.update;
       return newState;
     default:
       return state;

@@ -6,8 +6,8 @@ import "./MainPage.css";
 import NoteForm from "../auth/NoteForm/NoteForm";
 
 function MainPage(props) {
-  const dispatch = useDispatch();
-  const { notes,pinned, update, user } = props;
+ 
+  const { notes, pinned, update, user, getAllNotes, getPinnedNotes} = props;
   //   const notes = useSelector((state) => state.note.notes);
   //   const user = useSelector((state) =>
   //     state.session.user ? state.session.user : null
@@ -22,14 +22,16 @@ function MainPage(props) {
   useEffect(() => {
     if (user) {
       //   (async () => await dispatch(getAllNotes()))();
-        dispatch(getAllNotes());
-        dispatch(getPinnedNotes())
+      getAllNotes()
+      getPinnedNotes()
     }
   }, [update]);
 
-    if (!notes) {
-        return null
-    }
+  if (!notes) {
+    return null;
+  } else if (!pinned) {
+    return null;
+  }
 
   return (
     <div>
@@ -82,10 +84,19 @@ function MainPage(props) {
 const mapStateToProps = (state) => {
   return {
     notes: state.note.notes,
-      pinned: state.note.pinned,
-    update:state.note.update,
+    pinned: state.note.pinned,
+    update: state.note.update,
     user: state.session.user,
   };
 };
-
-export default connect(mapStateToProps, null)(MainPage);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllNotes: () => {
+      dispatch(getAllNotes())
+    },
+    getPinnedNotes: () => {
+      dispatch(getPinnedNotes())
+    }
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
