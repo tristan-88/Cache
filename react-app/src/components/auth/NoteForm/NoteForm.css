@@ -106,3 +106,8 @@ input#radioTeal{
 .input-title{
     width: 15rem;
 }
+
+.form-page{
+    display: flex;
+    justify-content: center;
+}
