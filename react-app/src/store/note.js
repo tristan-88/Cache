@@ -70,7 +70,7 @@ export const getPinnedNotes = () => async (dispatch) => {
 };
 
 export const postingNote =
-  ({title, content, color, archived, pinned }) =>
+  ({ title, content, color, archived, pinned }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/`, {
       method: "POST",
@@ -126,7 +126,8 @@ export const deletingNote = (noteId) => async (dispatch) => {
 const initialState = {
   notes: null,
   archived: null,
-  pinned: null,
+    pinned: null,
+  update: false,
 };
 
 export default function noteReducer(state = initialState, action) {
@@ -135,48 +136,126 @@ export default function noteReducer(state = initialState, action) {
     case GET_NOTES:
       return {
         ...state,
-        notes: action.payload,
+        notes: Object.values(action.payload),
       };
     case GET_ARCHIVED:
       return {
         ...state,
-        archived: action.payload,
+        archived: Object.values(action.payload),
       };
     case GET_PINNED:
       return {
         ...state,
-        pinned: action.payload,
+        pinned: Object.values(action.payload),
       };
     case DELETE_NOTE:
       newState = Object.assign({}, state);
-      delete newState.archived[action.payload];
+      newState.archived = state.archived.filter(
+        (note) => note.id !== action.payload
+      );
+      //   delete newState.archived[action.payload];
       return newState;
     case EDIT_NOTE:
       newState = Object.assign({}, state);
-      newState.notes[action.payload.id] = action.payload;
-      if (action.payload.archived === true) {
-        try {
-          delete newState.notes[action.payload.id];
-          delete newState.pinned[action.payload.id];
-        } catch (error) {
-          console.log(error);
+      //   newState.notes[action.payload.id] = action.payload;
+      if (
+        action.payload.archived === false &&
+        action.payload.pinned === false
+      ) {
+        if (newState.notes.some((note) => note.id === action.payload.id)) {
+          newState.notes = state.notes.map((note) => {
+            if (note.id === action.payload.id) {
+              return action.payload;
+            }
+            return note;
+          });
+        } else {
+          //refactor for order?
+          newState.notes.push(action.payload);
         }
-        newState.archived[action.payload.id] = action.payload;
+
+        newState.archived = state.archived.filter(
+          (note) => note.id !== action.payload.id
+        );
+        newState.pinned = state.pinned.filter(
+          (note) => note.id !== action.payload.id
+        );
+      }
+      if (action.payload.archived === true) {
+        if (newState.archived.some((note) => note.id === action.payload.id)) {
+          newState.archived = state.archived.map((note) => {
+            if (note.id === action.payload.id) {
+              return action.payload;
+            }
+            return note;
+          });
+        } else {
+          //refactor for order??
+          newState.archived.push(action.payload);
+        }
+        newState.notes = state.notes.filter(
+          (note) => note.id !== action.payload.id
+        );
+        newState.pinned = state.pinned.filter(
+          (note) => note.id !== action.payload.id
+        );
+
+        // try {
+        //   delete newState.notes[action.payload.id];
+        //   delete newState.pinned[action.payload.id];
+        // } catch (error) {
+        //   console.log(error);
+        // }
+        // newState.archived[action.payload.id] = action.payload;
       }
       if (action.payload.pinned === true) {
-        try {
-          delete newState.notes[action.payload.id];
-          delete newState.archived[action.payload.id];
-        } catch (error) {
-          console.log(error);
+        if (newState.pinned.some((note) => note.id === action.payload.id)) {
+          newState.pinned = state.pinned.map((note) => {
+            if (note.id === action.payload.id) {
+              return action.payload;
+            }
+            return note;
+          });
+        } else {
+          //refactor for order??
+          newState.pinned.push(action.payload);
         }
-        newState.pinned[action.payload.id] = action.payload;
+        newState.notes = state.notes.filter(
+          (note) => note.id !== action.payload.id
+        );
+        newState.archived = state.archived.filter(
+          (note) => note.id !== action.payload.id
+        );
+
+        // try {
+        //   delete newState.notes[action.payload.id];
+        //   delete newState.archived[action.payload.id];
+        // } catch (error) {
+        //   console.log(error);
+        // }
+        // newState.pinned[action.payload.id] = action.payload;
       }
-          return newState;
-      case POST_NOTE:
-          newState = Object.assign({}, state)
-          newState.notes[action.payload.id] = action.payload
-          return newState
+      return newState;
+    case POST_NOTE:
+      newState = Object.assign({}, state);
+          if (action.payload.archived === true) {
+              if (newState.archived === null) {
+                  newState.archived = []
+          }
+        newState.archived.push(action.payload);
+          } else if (action.payload.pinned === true) {
+              if (newState.pinned === null) {
+                  newState.pinned = []
+              }
+        newState.pinned.push(action.payload);
+          } else {
+              if (newState.notes === null) {
+                  newState.notes = []
+              }
+        newState.notes.push(action.payload);
+          }
+          newState.update = !newState.update 
+      return newState;
     default:
       return state;
   }

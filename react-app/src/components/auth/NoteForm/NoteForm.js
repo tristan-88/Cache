@@ -3,21 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { postingNote } from "../../../store/note";
 import React, { useState, useEffect } from "react";
-import * as colorAction  from "../../../store/color"
-
+import * as colorAction from "../../../store/color";
 
 const NoteForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+  const currentColor = useSelector((state) => state.color.setColor);
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [archived, setArchived] = useState(false);
   const [pinned, setPinned] = useState(false);
   const [color, setColor] = useState("white");
   const [close, setClose] = useState(false);
-    const [checkedCircle, setCheckCircle] = useState("white");
-    const {settingColor} = colorAction
+  const [checkedCircle, setCheckCircle] = useState("white");
+  const { settingColor } = colorAction;
 
   const onPostNote = async (e) => {
     e.preventDefault();
@@ -26,9 +26,15 @@ const NoteForm = () => {
     }
   };
 
-    const clickCircle = async (color) => {
-        setCheckCircle(color)
-  
+  useEffect(() => {
+    if (close === true) {
+      setClose(false);
+    }
+    dispatch(settingColor(color));
+  }, [close, color, checkedCircle]);
+
+  const clickCircle = async (color) => {
+    setColor(color);
   };
 
   const onClose = () => {
@@ -55,16 +61,6 @@ const NoteForm = () => {
     }
   };
 
-  useEffect(() => {
-    if (close === true) {
-      setClose(false);
-    }
-      if (color === checkedCircle) {
-        dispatch(settingColor(color))
-    }
-      
-  }, [close, color, checkedCircle]);
-
   const postPinned = (e) => {
     if (pinned === false) {
       setPinned(true);
@@ -72,9 +68,9 @@ const NoteForm = () => {
       setPinned(false);
     }
   };
-
+  console.log(color);
   return (
-      <div className="form-container" style={{backgroundColor: `${checkedCircle}` }} >
+    <div className="form-container" style={{ backgroundColor: `${color}` }}>
       <form onSubmit={onPostNote}>
         <div className="pinned-button">
           <button
@@ -110,7 +106,7 @@ const NoteForm = () => {
             id="radioWhite"
             name="color"
             onChange={() => setColor("white")}
-            checked={color == "white"}
+            checked={color === "white"}
             className="radio-btn"
           />
           <label for="radioWhite">
@@ -119,15 +115,15 @@ const NoteForm = () => {
               style={{ backgroundColor: "white" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "white" ? <i class="fas fa-check"></i> : ""}{" "}
+              {color === "white" ? <i class="fas fa-check"></i> : ""}{" "}
             </div>
           </label>
           <input
             type="radio"
-            value={color}
+            value={currentColor}
             name="color"
             onClick={() => setColor("red")}
-            checked={color == "red"}
+            checked={color === "red"}
             id="radioRed"
           />
           <label for="radioRed" className="label-red">
@@ -136,7 +132,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "red" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "red" ? <i class="fas fa-check"></i> : ""}
+              {color === "red" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -144,7 +140,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("blue")}
-            checked={color == "blue"}
+            checked={color === "blue"}
             id="radioBlue"
           />
           <label for="radioBlue">
@@ -153,7 +149,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "blue" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "blue" ? <i class="fas fa-check"></i> : ""}
+              {color === "blue" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -161,7 +157,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("yellow")}
-            checked={color == "yellow"}
+            checked={color === "yellow"}
             id="radioYellow"
           />
           <label for="radioYellow">
@@ -170,7 +166,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "yellow" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "yellow" ? <i class="fas fa-check"></i> : ""}
+              {color === "yellow" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -178,7 +174,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("teal")}
-            checked={color == "teal"}
+            checked={color === "teal"}
             id="radioTeal"
           />
           <label for="radioTeal">
@@ -187,7 +183,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "teal" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "teal" ? <i class="fas fa-check"></i> : ""}
+              {color === "teal" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -195,7 +191,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("purple")}
-            checked={color == "purple"}
+            checked={color === "purple"}
             id="radioPurple"
           />
           <label for="radioPurple">
@@ -204,7 +200,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "purple" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "purple" ? <i class="fas fa-check"></i> : ""}
+              {color === "purple" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -212,7 +208,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("pink")}
-            checked={color == "pink"}
+            checked={color === "pink"}
             id="radioPink"
           />
           <label for="radioPink">
@@ -221,7 +217,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "pink" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "pink" ? <i class="fas fa-check"></i> : ""}
+              {color === "pink" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -229,7 +225,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("green")}
-            checked={color == "green"}
+            checked={color === "green"}
             id="radioGreen"
           />
           <label for="radioGreen">
@@ -238,7 +234,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "green" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "green" ? <i class="fas fa-check"></i> : ""}
+              {color === "green" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -246,7 +242,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("gray")}
-            checked={color == "gray"}
+            checked={color === "gray"}
             id="radioGray"
           />{" "}
           <label for="radioGray">
@@ -255,7 +251,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "gray" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "gray" ? <i class="fas fa-check"></i> : ""}
+              {color === "gray" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -263,7 +259,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("brown")}
-            checked={color == "brown"}
+            checked={color === "brown"}
             id="radioBrown"
           />
           <label for="radioBrown">
@@ -272,7 +268,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "brown" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "brown" ? <i class="fas fa-check"></i> : ""}
+              {color === "brown" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -280,7 +276,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("orange")}
-            checked={color == "orange"}
+            checked={color === "orange"}
             id="radioOrange"
           />
           <label for="radioOrange">
@@ -289,7 +285,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "orange" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "orange" ? <i class="fas fa-check"></i> : ""}
+              {color === "orange" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
           <input
@@ -297,7 +293,7 @@ const NoteForm = () => {
             value={color}
             name="color"
             onClick={() => setColor("darkblue")}
-            checked={color == "darkblue"}
+            checked={color === "darkblue"}
             id="radioDarkBlue"
           />
           <label for="radioDarkBlue">
@@ -306,7 +302,7 @@ const NoteForm = () => {
               style={{ backgroundColor: "darkblue" }}
               onClick={() => clickCircle(color)}
             >
-              {checkedCircle === "darkblue" ? <i class="fas fa-check"></i> : ""}
+              {color === "darkblue" ? <i class="fas fa-check"></i> : ""}
             </div>
           </label>
         </div>

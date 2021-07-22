@@ -13,7 +13,7 @@ export const removingColor = (color) => ({
 
 
 const initialState = {
-    setColor: '',
+    setColor: 'white',
     removeColor: '',
 }
 
@@ -23,7 +23,7 @@ export default function colorReducer(state = initialState, action) {
         case SET_COLOR:
             return {
                 ...state,
-                settingColor: action.payload,
+                setColor: action.payload,
                 
             }
         case REMOVE_COLOR:
