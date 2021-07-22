@@ -59,8 +59,9 @@ function MainPage(props) {
       </div>
 
       {isShown && <NoteForm />}
+      <h1 className="h1-notes">Notes</h1>
       <div className="notes-container">
-        <h1>Notes:</h1>
+        
         {notes.length > 0 &&
           notes.map((note) => {
             if (
@@ -80,8 +81,9 @@ function MainPage(props) {
             }
           })}
       </div>
+      <h1 className="h1-pinned">Pinned Notes</h1>
       <div className="pinned-container">
-        <h1>Pinned Notes:</h1>
+        
         {pinned.length > 0 &&
           pinned.map((note) => {
             if (

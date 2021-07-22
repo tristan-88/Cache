@@ -31,7 +31,7 @@
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-  background-color: lightslategray;
+  background-color: lightcyan;
 }
 
 .pinned-container {
@@ -58,4 +58,9 @@
 .create-note-container{
   display: flex;
   justify-content: center;
+}
+
+.h1-notes,
+.h1-pinned{
+  margin-left: 1em;
 }
