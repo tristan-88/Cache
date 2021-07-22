@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllNotes, getPinnedNotes } from "../../store/note";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
@@ -6,8 +6,7 @@ import "./MainPage.css";
 import NoteForm from "../auth/NoteForm/NoteForm";
 
 function MainPage(props) {
- 
-  const { notes, pinned, update, user, getAllNotes, getPinnedNotes} = props;
+  const { notes, pinned, update, user, getAllNotes, getPinnedNotes } = props;
   //   const notes = useSelector((state) => state.note.notes);
   //   const user = useSelector((state) =>
   //     state.session.user ? state.session.user : null
@@ -17,14 +16,20 @@ function MainPage(props) {
   // console.log(noteValue, "Note value")
   // const noteArchived = noteValue.filter(note => note.archived === false)
   // console.log("Not archived", noteArchived)
-  const notesChange = notes ? Object.values(notes) : {};
+  const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
     if (user) {
-      //   (async () => await dispatch(getAllNotes()))();
-      getAllNotes()
-      getPinnedNotes()
+      getAllNotes();
+      getPinnedNotes();
     }
+    if (!isShown) return;
+    const closeShown = () => {
+      setIsShown(false);
+    };
+
+    document.addEventListener("submit", closeShown);
+    return () => document.removeEventListener("submit", closeShown);
   }, [update]);
 
   if (!notes) {
@@ -33,9 +38,27 @@ function MainPage(props) {
     return null;
   }
 
+  const handleSumbit = () => {
+    setIsShown(true);
+    // let note = document.getElementsByClassName("create-note")
+    // let display = note[0].style.display
+
+    // if (display === "block") {
+    //   note[0].style.display = "none"
+    // } else {
+    //   note[0].style.display = "block"
+    // }
+  };
+
   return (
     <div>
-      <NoteForm />
+      <div className="create-note-container">
+        <div className="create-note" onClick={handleSumbit}>
+          Take Note...
+        </div>
+      </div>
+
+      {isShown && <NoteForm />}
       <div className="notes-container">
         <h1>Notes:</h1>
         {notes.length > 0 &&
@@ -92,11 +115,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllNotes: () => {
-      dispatch(getAllNotes())
+      dispatch(getAllNotes());
     },
     getPinnedNotes: () => {
-      dispatch(getPinnedNotes())
-    }
+      dispatch(getPinnedNotes());
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

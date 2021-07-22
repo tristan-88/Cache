@@ -17,34 +17,48 @@ const NoteForm = () => {
   const [color, setColor] = useState("white");
   const [close, setClose] = useState(false);
   const [checkedCircle, setCheckCircle] = useState("white");
+  const [isShown, setIsShown] = useState(false);
   const { settingColor } = colorAction;
 
   const onPostNote = async (e) => {
     e.preventDefault();
     if (user) {
-        await dispatch(postingNote({ title, content, color, archived, pinned }));
-        setContent("")
-        setTitle("")
-        setArchived(false)
-        setPinned(false)
-        setColor("white")
+      await dispatch(postingNote({ title, content, color, archived, pinned }));
+      setContent("");
+      setTitle("");
+      setArchived(false);
+      setPinned(false);
+      setColor("white");
     }
   };
 
   useEffect(() => {
-    if (close === true) {
-      setClose(false);
-    }
+  
     dispatch(settingColor(color));
+
+    if (!isShown) return;
+    
+  
+
+    // document.addEventListener("submit", closeShown);
+    // return () => document.removeEventListener("submit", closeShown);
+
   }, [close, color, checkedCircle]);
 
   const clickCircle = async (color) => {
     setColor(color);
   };
-
-  const onClose = () => {
-    setClose(true);
-  };
+   
+  const closeShown = () => {
+    // setIsShown(false);
+    let note = document.getElementsByClassName("form-container");
+    let display = note[0].style.display;
+    if (display === "flex") {
+      note[0].style.display = "none";
+    } else {
+      note[0].style.display = "flex";
+    }
+    };
 
   const postTitle = (e) => {
     setTitle(e.target.value);
@@ -74,8 +88,7 @@ const NoteForm = () => {
     }
   };
   console.log(color);
-  return (
-    <div className="form-container" style={{ backgroundColor: `${color}` }}>
+  return ( <div className="form-container" style={{ backgroundColor: `${color}` }}>
       <form onSubmit={onPostNote}>
         <div className="pinned-button">
           <button
@@ -86,22 +99,24 @@ const NoteForm = () => {
             <i className="fas fa-thumbtack"></i>
           </button>
         </div>
-        <div>
-          <label>Title</label>
+        <div className="title-div">
+          <label>Title </label>
           <input
             type="text"
             name="Title"
             onChange={postTitle}
-            value={title}
+          value={title}
+          className="input-title"
           ></input>
         </div>
-        <div>
-          <label>Content</label>
+        <div className="content-div">
+          <label>Content </label>
           <input
             type="text"
             name="Content"
             onChange={postContent}
-            value={content}
+          value={content}
+          className="content-input"
           ></input>
         </div>
         <div className="radio-color">
@@ -326,11 +341,12 @@ const NoteForm = () => {
           </button>
         </div>
         <div className="close-button">
-          <button className="button-close" type="submit" onClick={onClose}>
-            <i className="fas fa-times"></i>
-          </button>
+          
         </div>
-      </form>
+    </form>
+    <button className="button-close" onClick={closeShown}>
+        <i className="fas fa-times"></i>
+      </button>
     </div>
   );
 };

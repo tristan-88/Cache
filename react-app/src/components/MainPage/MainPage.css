@@ -43,3 +43,19 @@
   flex-wrap: wrap;
   background-color: aliceblue;
 }
+
+.create-note{
+  margin:1rem;
+  border:0.3rem solid black;
+  width: 10rem;
+  height: 8rem;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  border-radius: 10%;
+}
+
+.create-note-container{
+  display: flex;
+  justify-content: center;
+}

@@ -1,6 +1,6 @@
 .form-container{
   width: 25rem;
-  height: 25rem;
+  height: 28rem;
   border: 0.2em inset black;
   display: flex;
   justify-content: center;
@@ -57,13 +57,18 @@ input#radioTeal{
     display: flex;
     justify-content: flex-end;
     padding: 0.5em;
+    width: 21rem;
+    height: 5em;
+    align-items: flex-end;
 }
+
 
 .post-button {
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: flex-start;
     height: 8em;
+    margin: 0 -1em;
 }
 .button-post{
     font-size: x-large;
@@ -88,4 +93,16 @@ input#radioTeal{
 }
 .fa-check{
     font-size: x-large;
+}
+
+.title-div{
+    margin-bottom: 1rem;
+}
+
+.content-input{
+    width: 18em;
+    height: 10em;
+}
+.input-title{
+    width: 15rem;
 }
