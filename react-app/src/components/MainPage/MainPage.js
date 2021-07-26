@@ -4,6 +4,7 @@ import { useDispatch, useSelector, connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import "./MainPage.css";
 import NoteForm from "../auth/NoteForm/NoteForm";
+import EditForm from "../auth/NoteForm/EditForm";
 
 function MainPage(props) {
   const { notes, pinned, update, user, getAllNotes, getPinnedNotes } = props;
@@ -17,6 +18,7 @@ function MainPage(props) {
   // const noteArchived = noteValue.filter(note => note.archived === false)
   // console.log("Not archived", noteArchived)
   const [isShown, setIsShown] = useState(false);
+  const [isEditShown, setEditShown] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -26,7 +28,10 @@ function MainPage(props) {
     if (!isShown) return;
     const closeShown = () => {
       setIsShown(false);
+      setEditShown(false)
     };
+
+    if (!isEditShown) return;
 
     document.addEventListener("submit", closeShown);
     return () => document.removeEventListener("submit", closeShown);
@@ -50,6 +55,10 @@ function MainPage(props) {
     // }
   };
 
+  const handleEdit = (e) => {
+    setEditShown(true);
+  };
+
   return (
     <div>
       <div className="create-note-container">
@@ -58,10 +67,9 @@ function MainPage(props) {
         </div>
       </div>
 
-      {isShown && <NoteForm />}
+      {isShown && <NoteForm setIsShown={setIsShown} />}
       <h1 className="h1-notes">Notes</h1>
       <div className="notes-container">
-        
         {notes.length > 0 &&
           notes.map((note) => {
             if (
@@ -70,12 +78,18 @@ function MainPage(props) {
               user.id === note.user_id
             ) {
               return (
-                <div
-                  key={note.id}
-                  className="note-div"
-                  style={{ backgroundColor: `${note.color}` }}
-                >
-                  <div className="note-content">{note.content}</div>
+                <div>
+                  <div
+                    key={note.id}
+                    className="note-div"
+                    style={{ backgroundColor: `${note.color}` }}
+                    onClick={handleEdit}
+                  >
+                    <div className="note-content">{note.content}</div>
+                  </div>
+                  {isEditShown && note.user_id === user.id ? (
+                    <EditForm note={note} setEditShown={setEditShown} />
+                  ) : null}
                 </div>
               );
             }
@@ -83,7 +97,6 @@ function MainPage(props) {
       </div>
       <h1 className="h1-pinned">Pinned Notes</h1>
       <div className="pinned-container">
-        
         {pinned.length > 0 &&
           pinned.map((note) => {
             if (

@@ -1,40 +1,42 @@
 import "./NoteForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import { postingNote } from "../../../store/note";
+import { editingNote } from "../../../store/note";
 import React, { useState, useEffect } from "react";
 import * as colorAction from "../../../store/color";
 
-const NoteForm = ({setIsShown}) => {
+const EditForm = ({ note , setEditShown }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const currentColor = useSelector((state) => state.color.setColor);
-  const [content, setContent] = useState("");
-  const [title, setTitle] = useState("");
-  const [archived, setArchived] = useState(false);
-  const [pinned, setPinned] = useState(false);
-  const [color, setColor] = useState("white");
+  const [content, setContent] = useState(note.content);
+  const [title, setTitle] = useState(note.title);
+  const [archived, setArchived] = useState(note.archived);
+  const [pinned, setPinned] = useState(note.pinned);
+  const [color, setColor] = useState(note.color);
   const [close, setClose] = useState(false);
   const [checkedCircle, setCheckCircle] = useState("white");
-  const { settingColor } = colorAction;
+    const { settingColor } = colorAction;
+    const currentId = note.id
+    
 
-  const onPostNote = async (e) => {
+  const onEditNote = async (e) => {
     e.preventDefault();
-    if (user) {
-      await dispatch(postingNote({ title, content, color, archived, pinned }));
-      setContent("");
-      setTitle("");
-      setArchived(false);
-      setPinned(false);
-      setColor("white");
+    if (note) {
+      await dispatch(
+        editingNote({ currentId, title, content, color, archived, pinned })
+      );
+    //   setContent("");
+    //   setTitle("");
+    //   setArchived(false);
+    //   setPinned(false);
+    //   setColor("white");
     }
   };
 
   useEffect(() => {
     dispatch(settingColor(color));
-
-   
 
     // document.addEventListener("submit", closeShown);
     // return () => document.removeEventListener("submit", closeShown);
@@ -45,7 +47,7 @@ const NoteForm = ({setIsShown}) => {
   };
 
   const closeShown = () => {
-   setIsShown(false)
+    setEditShown(false);
     // setIsShown(false);
     // let note = document.getElementsByClassName("form-container");
     // let display = note[0].style.display;
@@ -87,7 +89,7 @@ const NoteForm = ({setIsShown}) => {
   return (
     <div className="form-page">
       <div className="form-container" style={{ backgroundColor: `${color}` }}>
-        <form onSubmit={onPostNote}>
+        <form onSubmit={onEditNote}>
           <div className="pinned-button">
             <button
               className="button-archived"
@@ -348,4 +350,4 @@ const NoteForm = ({setIsShown}) => {
   );
 };
 
-export default NoteForm;
+export default EditForm;
