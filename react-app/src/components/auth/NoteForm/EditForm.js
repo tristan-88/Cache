@@ -33,6 +33,7 @@ const EditForm = ({ note, setEditShown }) => {
       //   setArchived(false);
       //   setPinned(false);
       //   setColor("white");
+         setEditShown(0);
     }
   };
 
