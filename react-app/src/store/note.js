@@ -162,7 +162,7 @@ export default function noteReducer(state = initialState, action) {
         action.payload.archived === false &&
         action.payload.pinned === false
       ) {
-        if (newState.notes.some((note) => note.id === action.payload.id)) {
+        if (newState.notes.some((note) => note.id === action.payload.id) && newState.notes !== null) {
           newState.notes = state.notes.map((note) => {
             if (note.id === action.payload.id) {
               return action.payload;
@@ -185,7 +185,7 @@ export default function noteReducer(state = initialState, action) {
         }
       }
       if (action.payload.archived === true) {
-        if (newState.archived.some((note) => note.id === action.payload.id)) {
+        if (newState.archived.some((note) => note.id === action.payload.id) && newState.archived !== null) {
           newState.archived = state.archived.map((note) => {
             if (note.id === action.payload.id) {
               return action.payload;
@@ -216,7 +216,7 @@ export default function noteReducer(state = initialState, action) {
         // newState.archived[action.payload.id] = action.payload;
       }
       if (action.payload.pinned === true) {
-        if (newState.pinned.some((note) => note.id === action.payload.id)) {
+        if (newState.pinned.some((note) => note.id === action.payload.id) && newState.pinned !== null) {
           newState.pinned = state.pinned.map((note) => {
             if (note.id === action.payload.id) {
               return action.payload;
