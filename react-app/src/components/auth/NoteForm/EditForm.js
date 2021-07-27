@@ -77,24 +77,20 @@ const EditForm = ({ note, setEditShown }) => {
       setArchived(true);
     } else if (archived === true && pinned === false) {
         setArchived(false);
-        setPinned(true)
-      } else {
-          setArchived(false)
-          setPinned(false)
-    }
+        setPinned(false)
+      }
+    
   };
 
   const postPinned = (e) => {
     if (pinned === false && archived === true) {
         setPinned(true);
         setArchived(false)
+      
     } else if (pinned === true && archived === false) {
         setPinned(false);
-        setArchived(true)
-    } else {
-        setArchived(false)
-        setPinned(false)
-    }
+       setArchived(false)
+    } 
   };
   console.log(color);
   return (
