@@ -106,12 +106,18 @@ function MainPage(props) {
               user.id === note.user_id
             ) {
               return (
-                <div
-                  key={note.id}
-                  className="note-div"
-                  style={{ backgroundColor: `${note.color}` }}
-                >
-                  <div className="note-content">{note.content}</div>
+                <div>
+                  <div
+                    key={note.id}
+                    className="note-div"
+                    style={{ backgroundColor: `${note.color}` }}
+                    onClick={()=> handleEdit(note.id)}
+                  >
+                    <div className="note-content">{note.content}</div>
+                  </div>
+                  {isEditShown === note.id && (
+                    <EditForm note={note} setEditShown={setEditShown} />
+                  )}
                 </div>
               );
             }
