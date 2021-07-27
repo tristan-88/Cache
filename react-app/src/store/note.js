@@ -173,13 +173,16 @@ export default function noteReducer(state = initialState, action) {
           //refactor for order?
           newState.notes.push(action.payload);
         }
-
-        newState.archived = state.archived.filter(
-          (note) => note.id !== action.payload.id
-        );
-        newState.pinned = state.pinned.filter(
-          (note) => note.id !== action.payload.id
-        );
+        if (state.archived) {
+          newState.archived = state.archived.filter(
+            (note) => note.id !== action.payload.id
+          );
+        }
+        if (state.pinned) {
+          newState.pinned = state.pinned.filter(
+            (note) => note.id !== action.payload.id
+          );
+        }
       }
       if (action.payload.archived === true) {
         if (newState.archived.some((note) => note.id === action.payload.id)) {
@@ -193,12 +196,16 @@ export default function noteReducer(state = initialState, action) {
           //refactor for order??
           newState.archived.push(action.payload);
         }
-        newState.notes = state.notes.filter(
-          (note) => note.id !== action.payload.id
-        );
-        newState.pinned = state.pinned.filter(
-          (note) => note.id !== action.payload.id
-        );
+        if (state.notes) {
+          newState.notes = state.notes.filter(
+            (note) => note.id !== action.payload.id
+          );
+        }
+        if (state.pinned) {
+          newState.pinned = state.pinned.filter(
+            (note) => note.id !== action.payload.id
+          );
+        }
 
         // try {
         //   delete newState.notes[action.payload.id];
@@ -220,12 +227,16 @@ export default function noteReducer(state = initialState, action) {
           //refactor for order??
           newState.pinned.push(action.payload);
         }
-        newState.notes = state.notes.filter(
-          (note) => note.id !== action.payload.id
-        );
-        newState.archived = state.archived.filter(
-          (note) => note.id !== action.payload.id
-        );
+        if (state.notes) {
+          newState.notes = state.notes.filter(
+            (note) => note.id !== action.payload.id
+          );
+        }
+        if (state.archived) {
+          newState.archived = state.archived.filter(
+            (note) => note.id !== action.payload.id
+          );
+        }
 
         // try {
         //   delete newState.notes[action.payload.id];

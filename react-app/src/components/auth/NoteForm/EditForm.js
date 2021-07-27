@@ -5,7 +5,7 @@ import { editingNote } from "../../../store/note";
 import React, { useState, useEffect } from "react";
 import * as colorAction from "../../../store/color";
 
-const EditForm = ({ note , setEditShown }) => {
+const EditForm = ({ note, setEditShown }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
@@ -17,21 +17,22 @@ const EditForm = ({ note , setEditShown }) => {
   const [color, setColor] = useState(note.color);
   const [close, setClose] = useState(false);
   const [checkedCircle, setCheckCircle] = useState("white");
-    const { settingColor } = colorAction;
-    const currentId = note.id
-    
+  const { settingColor } = colorAction;
+
+  console.log(note);
 
   const onEditNote = async (e) => {
     e.preventDefault();
     if (note) {
+      const noteId = note.id;
       await dispatch(
-        editingNote({ currentId, title, content, color, archived, pinned })
+        editingNote({ noteId, title, content, color, archived, pinned })
       );
-    //   setContent("");
-    //   setTitle("");
-    //   setArchived(false);
-    //   setPinned(false);
-    //   setColor("white");
+      //   setContent("");
+      //   setTitle("");
+      //   setArchived(false);
+      //   setPinned(false);
+      //   setColor("white");
     }
   };
 
@@ -47,8 +48,7 @@ const EditForm = ({ note , setEditShown }) => {
   };
 
   const closeShown = () => {
-    setEditShown(false);
-    // setIsShown(false);
+    setEditShown(0);
     // let note = document.getElementsByClassName("form-container");
     // let display = note[0].style.display;
     // if (display === "flex") {

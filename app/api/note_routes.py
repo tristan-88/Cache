@@ -61,20 +61,28 @@ def post_note():
 @note_routes.route('/<int:note_id>', methods=["PATCH"])
 @login_required
 def update_note(note_id):
+    print()
+    print(request.json, "NOTE OBJECT!!!!!!!!!")
+    print()
     new_title = request.json['title']
     new_content = request.json['content']
     new_color = request.json["color"]
     new_archived = request.json["archived"]
     new_pinned = request.json['pinned']
     current_note = Note.query.get(note_id)
-    current_note.title = new_title,
-    current_note.content = new_content,
-    current_note.user_id = current_user.id,
-    current_note.color = new_color,
-    current_note.archived = new_archived,
-    current_note.pinned = new_pinned,
+    print()
+    print(current_note.to_dict(), "LIne 72")
+    print()
+    current_note.title = new_title
+    current_note.content = new_content
+    current_note.color = new_color
+    current_note.archived = new_archived
+    current_note.pinned = new_pinned
     current_note.updated_at = datetime.utcnow()
     db.session.commit()
+    print()
+    print("NOTE- CURRENT!!!!!", current_note.to_dict())
+    print()
     return {"note": current_note.to_dict()}
 
 

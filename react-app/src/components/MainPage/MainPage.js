@@ -18,7 +18,7 @@ function MainPage(props) {
   // const noteArchived = noteValue.filter(note => note.archived === false)
   // console.log("Not archived", noteArchived)
   const [isShown, setIsShown] = useState(false);
-  const [isEditShown, setEditShown] = useState(false);
+  const [isEditShown, setEditShown] = useState(0);
 
   useEffect(() => {
     if (user) {
@@ -28,7 +28,7 @@ function MainPage(props) {
     if (!isShown) return;
     const closeShown = () => {
       setIsShown(false);
-      setEditShown(false)
+      setEditShown(0)
     };
 
     if (!isEditShown) return;
@@ -55,8 +55,9 @@ function MainPage(props) {
     // }
   };
 
-  const handleEdit = (e) => {
-    setEditShown(true);
+  const handleEdit = (noteId) => {
+    setEditShown(noteId);
+
   };
 
   return (
@@ -83,13 +84,13 @@ function MainPage(props) {
                     key={note.id}
                     className="note-div"
                     style={{ backgroundColor: `${note.color}` }}
-                    onClick={handleEdit}
+                    onClick={() => handleEdit(note.id)}
                   >
                     <div className="note-content">{note.content}</div>
                   </div>
-                  {isEditShown && note.user_id === user.id ? (
+                  {isEditShown === note.id &&
                     <EditForm note={note} setEditShown={setEditShown} />
-                  ) : null}
+                  }
                 </div>
               );
             }
