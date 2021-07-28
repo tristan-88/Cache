@@ -78,6 +78,8 @@ const EditForm = ({ note, setEditShown }) => {
     } else if (archived === true && pinned === false) {
         setArchived(false);
         setPinned(false)
+      } else {
+        setArchived(true)
       }
     
   };
@@ -90,7 +92,9 @@ const EditForm = ({ note, setEditShown }) => {
     } else if (pinned === true && archived === false) {
         setPinned(false);
        setArchived(false)
-    } 
+    } else {
+      setPinned (true)
+    }
   };
   console.log(color);
   return (
