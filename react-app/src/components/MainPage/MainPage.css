@@ -44,23 +44,48 @@
   background-color: aliceblue;
 }
 
-.create-note{
-  margin:1rem;
-  border:0.3rem solid black;
+.create-note {
+  margin: 1rem;
+  border: 0.3rem solid black;
   width: 10rem;
   height: 8rem;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   border-radius: 10%;
 }
 
-.create-note-container{
+.create-note-container {
   display: flex;
   justify-content: center;
 }
 
 .h1-notes,
-.h1-pinned{
+.h1-pinned {
   margin-left: 1em;
+}
+
+.nav-container {
+  height: 100vh;
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+
+.main-page-container {
+  display: flex;
+}
+
+.nav-container a{
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.nav-container button{
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
 }

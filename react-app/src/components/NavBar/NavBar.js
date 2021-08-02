@@ -2,14 +2,15 @@ import React from "react";
 import { NavLink, Redirect} from "react-router-dom";
 import { useSelector } from "react-redux";
 import LogoutButton from "../auth/LogoutButton";
+import './NavBar.css'
 
 const NavBar = () => {
   const user = useSelector((state) => state.session.user ? state.session.user: null);
  
   return (
-    <nav>
+    <nav className="nav-container">
       {!user && (
-        <React.Fragment>
+        <div className="nav-container">
           <div>
             <NavLink to="/login" exact={true} activeClassName="active">
               Login
@@ -20,13 +21,13 @@ const NavBar = () => {
               Sign Up
             </NavLink>
           </div>
-        </React.Fragment>
+        </div>
       )}
       {user && (
-        <div>
+        <div className="nav-container">
           <div>
             <NavLink to="/" exact={true} activeClassName="active">
-              Main
+             📝 Main
             </NavLink>
           </div>
           <div>
@@ -35,16 +36,16 @@ const NavBar = () => {
               exact={true}
               activeClassName="active"
             >
-              Users
+              👨‍👩‍👧‍👦 Users
             </NavLink>
           </div>
           <div>
             <NavLink to={`/archived`} exact={true} activeClassName="active">
-              Archived
+              🗃 Archived
             </NavLink>
           </div>
           <div>
-            <LogoutButton />
+            ❌<LogoutButton />
           </div>
         </div>
       )}

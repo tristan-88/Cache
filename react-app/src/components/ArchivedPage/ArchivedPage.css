@@ -25,11 +25,36 @@
 }
 
 .archived-container {
-  margin: 2rem;
+  margin: 10rem 2rem;
   width: 90%;
   height: 50%;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
   background-color: lavenderblush;
+}
+
+.nav-container {
+  height: 100vh;
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+
+.main-page-container {
+  display: flex;
+}
+
+.nav-container a{
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.nav-container button{
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
 }

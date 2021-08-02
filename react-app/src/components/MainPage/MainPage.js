@@ -5,6 +5,7 @@ import { NavLink, Link } from "react-router-dom";
 import "./MainPage.css";
 import NoteForm from "../auth/NoteForm/NoteForm";
 import EditForm from "../auth/NoteForm/EditForm";
+import NavBar from "../NavBar/NavBar";
 
 function MainPage(props) {
   const { notes, pinned, update, user, getAllNotes, getPinnedNotes } = props;
@@ -28,7 +29,7 @@ function MainPage(props) {
     if (!isShown) return;
     const closeShown = () => {
       setIsShown(false);
-      setEditShown(0)
+      setEditShown(0);
     };
 
     if (!isEditShown) return;
@@ -57,71 +58,73 @@ function MainPage(props) {
 
   const handleEdit = (noteId) => {
     setEditShown(noteId);
-
   };
 
   return (
-    <div>
-      <div className="create-note-container">
-        <div className="create-note" onClick={handleSumbit}>
-          Take Note...
+    <div className="main-page-container">
+      <NavBar />
+      <div className="notes-area">
+        {" "}
+        <div className="create-note-container">
+          <div className="create-note" onClick={handleSumbit}>
+            Take Note...
+          </div>
         </div>
-      </div>
-
-      {isShown && <NoteForm setIsShown={setIsShown} />}
-      <h1 className="h1-notes">Notes</h1>
-      <div className="notes-container">
-        {notes.length > 0 &&
-          notes.map((note) => {
-            if (
-              note.archived === false &&
-              note.pinned === false &&
-              user.id === note.user_id
-            ) {
-              return (
-                <div>
-                  <div
-                    key={note.id}
-                    className="note-div"
-                    style={{ backgroundColor: `${note.color}` }}
-                    onClick={() => handleEdit(note.id)}
-                  >
-                    <div className="note-content">{note.content}</div>
+        {isShown && <NoteForm setIsShown={setIsShown} />}
+        <h1 className="h1-notes">Notes</h1>
+        <div className="notes-container">
+          {notes.length > 0 &&
+            notes.map((note) => {
+              if (
+                note.archived === false &&
+                note.pinned === false &&
+                user.id === note.user_id
+              ) {
+                return (
+                  <div>
+                    <div
+                      key={note.id}
+                      className="note-div"
+                      style={{ backgroundColor: `${note.color}` }}
+                      onClick={() => handleEdit(note.id)}
+                    >
+                      <div className="note-content">{note.content}</div>
+                    </div>
+                    {isEditShown === note.id && (
+                      <EditForm note={note} setEditShown={setEditShown} />
+                    )}
                   </div>
-                  {isEditShown === note.id &&
-                    <EditForm note={note} setEditShown={setEditShown} />
-                  }
-                </div>
-              );
-            }
-          })}
-      </div>
-      <h1 className="h1-pinned">Pinned Notes</h1>
-      <div className="pinned-container">
-        {pinned.length > 0 &&
-          pinned.map((note) => {
-            if (
-              note.archived === false &&
-              note.pinned === true &&
-              user.id === note.user_id
-            ) {
-              return (
-                <div>
-                  <div
-                    key={note.id}
-                    className="note-div"
-                    style={{ backgroundColor: `${note.color}` }}
-                    onClick={()=> handleEdit(note.id)}
-                  >
-                    <div className="note-content">{note.content}</div>
+                );
+              }
+            })}
+        </div>
+        <h1 className="h1-pinned">Pinned Notes</h1>
+        <div className="pinned-container">
+          {pinned.length > 0 &&
+            pinned.map((note) => {
+              if (
+                note.archived === false &&
+                note.pinned === true &&
+                user.id === note.user_id
+              ) {
+                return (
+                  <div>
+                    <div
+                      key={note.id}
+                      className="note-div"
+                      style={{ backgroundColor: `${note.color}` }}
+                      onClick={() => handleEdit(note.id)}
+                    >
+                      <div className="note-content">{note.content}</div>
+                    </div>
+                    {isEditShown === note.id && (
+                      <EditForm note={note} setEditShown={setEditShown} />
+                    )}
                   </div>
-                  {isEditShown === note.id && (
-                    <EditForm note={note} setEditShown={setEditShown} />
-                  )}
-                </div>
-              );
-            }
-          })}
+                );
+              }
+            })}
+        </div>
       </div>
     </div>
   );
