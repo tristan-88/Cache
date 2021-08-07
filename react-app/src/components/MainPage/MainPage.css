@@ -37,11 +37,12 @@
 .pinned-container {
   margin: 2rem;
   width: 90%;
-  height: 100%;
+  height: 50%;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
   background-color: aliceblue;
+  padding-bottom: 2rem;
 }
 
 .create-note {

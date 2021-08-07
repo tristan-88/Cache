@@ -74,14 +74,15 @@ function MainPage(props) {
         <h1 className="h1-notes">Notes</h1>
         <div className="notes-container">
           {notes.length > 0 &&
-            notes.map((note) => {
+            notes.map((note, idx) => {
               if (
                 note.archived === false &&
                 note.pinned === false &&
                 user.id === note.user_id
               ) {
                 return (
-                  <div>
+                  //82 - 86 refactor to a component 
+                  <div key={idx}>
                     <div
                       key={note.id}
                       className="note-div"
@@ -125,6 +126,7 @@ function MainPage(props) {
               }
             })}
         </div>
+
       </div>
     </div>
   );

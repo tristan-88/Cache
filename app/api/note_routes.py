@@ -13,7 +13,7 @@ note_routes = Blueprint('notes', __name__)
 @note_routes.route('/')
 @login_required
 def get_notes():
-    notes = Note.query.order_by(Note.created_at.desc()).all() #check why I cannot use order_by.desc().all()
+    notes = Note.query.filter(Note.archived == False , Note.pinned == False).order_by(Note.created_at.desc()).all() #check why I cannot use order_by.desc().all() #(filter multiple values separate , vs to and or )
     return {"notes":{note.id: note.to_dict() for note in notes}}
 
 @note_routes.route('/<int:id>')

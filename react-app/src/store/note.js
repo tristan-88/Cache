@@ -6,7 +6,11 @@ const DELETE_NOTE = "note/DELETE_NOTE";
 const EDIT_NOTE = "note/EDIT_NOTE";
 const POST_NOTE = "note/POST_NOTE";
 const GET_ARCHIVED = "note/GET_ARCHIVED";
-const GET_PINNED = "note/PINNED";
+const GET_PINNED = "note/GET_PINNED";
+const ADD_PINNED = "note/ADD_PINNED";
+const REMOVED_PINNED = "note/REMOVED_PINNED";
+const ADD_ARCHIVED = "note/ADD_ARCHIVED";
+const REMOVED_ARCHIVED = "note/REMOVED_ARCHIVED";
 
 const getNotes = (notes) => ({
   type: GET_NOTES,
@@ -44,6 +48,8 @@ const getPinned = (notes) => ({
 });
 
 //thunks
+
+//this routes get all the notes that arent pinned or archived
 export const getAllNotes = () => async (dispatch) => {
   const response = await axios.get("/api/notes/");
   const data = response.data;
@@ -124,9 +130,9 @@ export const deletingNote = (noteId) => async (dispatch) => {
 };
 
 const initialState = {
-  notes: null,
-  archived: null,
-  pinned: null,
+  notes: [],
+  archived: [],
+  pinned: [],
   update: false,
 };
 
@@ -159,7 +165,7 @@ export default function noteReducer(state = initialState, action) {
       newState = Object.assign({}, state);
       //   newState.notes[action.payload.id] = action.payload;
       if (
-        action.payload.archived === false &&
+        !action.payload.archived  &&
         action.payload.pinned === false
       ) {
         if (newState.notes.some((note) => note.id === action.payload.id) && newState.notes !== null) {
