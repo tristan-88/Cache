@@ -39,13 +39,13 @@ def get_archive_note(id):
         return {"message":"This note is not in archived"}
     
     
-@note_routes.route('/pinned')
+@note_routes.route('/pin')
 @login_required
 def get_pinned_notes():
     notes = Note.query.filter(Note.pinned == True).all()
     return {"notes":{note.id: note.to_dict() for note in notes}}
 
-@note_routes.route('/pinned/<int:id>')
+@note_routes.route('/pin/<int:id>')
 @login_required
 def get_pinned_note(id):
     note = Note.query.get(id)
@@ -106,11 +106,40 @@ def update_note(note_id):
     print()
     return {"note": current_note.to_dict()}
 
+#switch values routes for pin and archive
+@note_routes.route('/<int:note_id>/archive', methods=["PATCH"])
+@login_required
+def add_archived(note_id):
+    current_note = Note.query.get(note_id)
+    current_note.archived = True
+    return {"note": current_note.to_dict()}
+
+@note_routes.route('/<int:note_id>/unarchive', methods=["PATCH"])
+@login_required
+def remove_archived(note_id):
+    current_note = Note.query.get(note_id)
+    current_note.archived = False
+    return {"note": current_note.to_dict()}
+
+@note_routes.route('/<int:note_id>/pin', methods=["PATCH"])
+@login_required
+def add_pin(note_id):
+    current_note = Note.query.get(note_id)
+    current_note.archived = True
+    return {"note": current_note.to_dict()}
+
+@note_routes.route('/<int:note_id>/unpin', methods=["PATCH"])
+@login_required
+def remove_unpin(note_id):
+    current_note = Note.query.get(note_id)
+    current_note.archived = False
+    return {"note": current_note.to_dict()}
+
 
 @note_routes.route('/<int:note_id>', methods=["DELETE"])
 @login_required
 def delete_note(note_id):
-    note = Note.query.filter(Note.id == note_id and Note.archived == True).first()
+    note = Note.query.filter(Note.id == note_id,  Note.archived == True).first()
     db.session.delete(note)
     db.session.commit()
     return {'message': "note has been deleted"}

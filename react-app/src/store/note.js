@@ -87,7 +87,7 @@ export const getArchivedNotes = () => async (dispatch) => {
   }
 };
 export const getPinnedNotes = () => async (dispatch) => {
-  const response = await axios.get("/api/notes/pinned");
+  const response = await axios.get("/api/notes/pin");
   const data = response.data;
   if (response.status === 200) {
     dispatch(getPinned(data.notes));
@@ -140,7 +140,7 @@ export const editingNote =
   };
 
 export const pinningNote =
-  ({ noteId, content, title, color, archived, pinned }) =>
+  ({ noteId,  pinned }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/${noteId}`, {
       method: "PATCH",
@@ -148,18 +148,16 @@ export const pinningNote =
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title,
-        content,
-        color,
-        archived,
         pinned,
       }),
     });
     const data = await response.json();
     if (response.ok) {
-      await dispatch(editNote(data.note));
+      await dispatch(pinNote(data.note));
     }
-  };
+    };
+  
+
 
 export const deletingNote = (noteId) => async (dispatch) => {
   const response = await fetch(`/api/notes/${noteId}`, {
