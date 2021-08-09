@@ -1,7 +1,7 @@
 import pprint
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Note
+from app.models import db, Note, note
 from app.forms import NoteForm
 from sqlalchemy import desc, asc
 from datetime import datetime
@@ -28,11 +28,32 @@ def get_archive_notes():
     notes = Note.query.filter(Note.archived == True).all()
     return {"notes":{note.id: note.to_dict() for note in notes}}
 
+@note_routes.route('/archive/<int:id>')
+@login_required
+def get_archive_note(id):
+    note = Note.query.get(id)
+    archived = note.to_dict()
+    if archived["archived"] == True:
+        return note.to_dict()
+    else:
+        return {"message":"This note is not in archived"}
+    
+    
 @note_routes.route('/pinned')
 @login_required
 def get_pinned_notes():
     notes = Note.query.filter(Note.pinned == True).all()
     return {"notes":{note.id: note.to_dict() for note in notes}}
+
+@note_routes.route('/pinned/<int:id>')
+@login_required
+def get_pinned_note(id):
+    note = Note.query.get(id)
+    archived = note.to_dict()
+    if archived["pinned"] == True:
+        return note.to_dict()
+    else:
+        return {"message":"This note is not a pinned note"}
 
 
 @note_routes.route('/', methods=["POST"])

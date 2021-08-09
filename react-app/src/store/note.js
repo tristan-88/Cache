@@ -47,6 +47,26 @@ const getPinned = (notes) => ({
   payload: notes,
 });
 
+const pinNote = (note) => ({
+  type: ADD_PINNED,
+  payload: note,
+})
+
+const unpinNote = (note) => ({
+  type: REMOVED_PINNED,
+  payload: note,
+})
+
+const archiveNote = (note) => ({
+  type: ADD_ARCHIVED,
+  payload: note,
+})
+
+const unArchiveNote = (note) => ({
+  type: REMOVED_ARCHIVED,
+  payload: note,
+})
+
 //thunks
 
 //this routes get all the notes that arent pinned or archived
@@ -98,6 +118,28 @@ export const postingNote =
   };
 
 export const editingNote =
+  ({ noteId, content, title, color, archived, pinned }) =>
+  async (dispatch) => {
+    const response = await fetch(`/api/notes/${noteId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        content,
+        color,
+        archived,
+        pinned,
+      }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      await dispatch(editNote(data.note));
+    }
+  };
+
+export const pinningNote =
   ({ noteId, content, title, color, archived, pinned }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/${noteId}`, {
