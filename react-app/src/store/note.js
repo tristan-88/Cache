@@ -171,7 +171,7 @@ export const unpinningNote =
     });
     const data = await response.json();
     if (response.ok) {
-      await dispatch(pinNote(data.note));
+      await dispatch(unpinNote(data.note));
     }
   };
 
