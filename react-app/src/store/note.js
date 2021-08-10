@@ -193,6 +193,24 @@ export const archivingNote =
     }
   };
 
+export const unArchivingNote =
+  ({ noteId, pinned }) =>
+  async (dispatch) => {
+    const response = await fetch(`/api/notes/${noteId}/unpin`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        pinned,
+      }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      await dispatch(unArchiveNote(data.note));
+    }
+  };
+
 export const deletingNote = (noteId) => async (dispatch) => {
   const response = await fetch(`/api/notes/${noteId}`, {
     method: "DELETE",
