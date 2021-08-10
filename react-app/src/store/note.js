@@ -142,7 +142,7 @@ export const editingNote =
 export const pinningNote =
   ({ noteId,  pinned }) =>
   async (dispatch) => {
-    const response = await fetch(`/api/notes/${noteId}`, {
+    const response = await fetch(`/api/notes/${noteId}/pin`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
