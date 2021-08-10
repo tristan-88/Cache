@@ -50,22 +50,22 @@ const getPinned = (notes) => ({
 const pinNote = (note) => ({
   type: ADD_PINNED,
   payload: note,
-})
+});
 
 const unpinNote = (note) => ({
   type: REMOVED_PINNED,
   payload: note,
-})
+});
 
 const archiveNote = (note) => ({
   type: ADD_ARCHIVED,
   payload: note,
-})
+});
 
 const unArchiveNote = (note) => ({
   type: REMOVED_ARCHIVED,
   payload: note,
-})
+});
 
 //thunks
 
@@ -140,7 +140,7 @@ export const editingNote =
   };
 
 export const pinningNote =
-  ({ noteId,  pinned }) =>
+  ({ noteId, pinned }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/${noteId}/pin`, {
       method: "PATCH",
@@ -155,9 +155,25 @@ export const pinningNote =
     if (response.ok) {
       await dispatch(pinNote(data.note));
     }
-    };
-  
+  };
 
+export const unpinningNote =
+  ({ noteId, pinned }) =>
+  async (dispatch) => {
+    const response = await fetch(`/api/notes/${noteId}/unpin`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        pinned,
+      }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      await dispatch(pinNote(data.note));
+    }
+  };
 
 export const deletingNote = (noteId) => async (dispatch) => {
   const response = await fetch(`/api/notes/${noteId}`, {
@@ -204,11 +220,11 @@ export default function noteReducer(state = initialState, action) {
     case EDIT_NOTE:
       newState = Object.assign({}, state);
       //   newState.notes[action.payload.id] = action.payload;
-      if (
-        !action.payload.archived  &&
-        action.payload.pinned === false
-      ) {
-        if (newState.notes.some((note) => note.id === action.payload.id) && newState.notes !== null) {
+      if (!action.payload.archived && action.payload.pinned === false) {
+        if (
+          newState.notes.some((note) => note.id === action.payload.id) &&
+          newState.notes !== null
+        ) {
           newState.notes = state.notes.map((note) => {
             if (note.id === action.payload.id) {
               return action.payload;
@@ -231,7 +247,10 @@ export default function noteReducer(state = initialState, action) {
         }
       }
       if (action.payload.archived === true) {
-        if (newState.archived.some((note) => note.id === action.payload.id) && newState.archived !== null) {
+        if (
+          newState.archived.some((note) => note.id === action.payload.id) &&
+          newState.archived !== null
+        ) {
           newState.archived = state.archived.map((note) => {
             if (note.id === action.payload.id) {
               return action.payload;
@@ -262,7 +281,10 @@ export default function noteReducer(state = initialState, action) {
         // newState.archived[action.payload.id] = action.payload;
       }
       if (action.payload.pinned === true) {
-        if (newState.pinned.some((note) => note.id === action.payload.id) && newState.pinned !== null) {
+        if (
+          newState.pinned.some((note) => note.id === action.payload.id) &&
+          newState.pinned !== null
+        ) {
           newState.pinned = state.pinned.map((note) => {
             if (note.id === action.payload.id) {
               return action.payload;
