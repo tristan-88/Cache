@@ -83,11 +83,17 @@ const NoteForm = ({setIsShown}) => {
       setPinned(false);
     }
   };
+
+  const onPosting = (e) => {
+    onPostNote(e)
+    closeShown(e)
+  }
+  
   console.log(color);
   return (
     <div className="form-page">
       <div className="form-container" style={{ backgroundColor: `${color}` }}>
-        <form onSubmit={onPostNote}>
+        <form onSubmit={onPosting}>
           <div className="pinned-button">
             <button
               className="button-archived"
