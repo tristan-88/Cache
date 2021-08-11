@@ -154,14 +154,14 @@ export const pinningNote =
   };
 
 export const unpinningNote =
-  ({ noteId, archived }) =>
+  ({ noteId }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/${noteId}/unpin`, {
       method: "PATCH",
     });
     const data = await response.json();
     if (response.ok) {
-      await dispatch(unpinNote(data.note));
+      await dispatch(unpinNote({ newNote:data.note }));
     }
   };
 
@@ -173,12 +173,12 @@ export const archivingNote =
     });
     const data = await response.json();
     if (response.ok) {
-      await dispatch(archiveNote(data.note));
+      await dispatch(archiveNote({data.note}));
     }
   };
 
 export const unArchivingNote =
-  ({ noteId, pinned }) =>
+  ({ noteId }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/${noteId}/unarchive`, {
       method: "PATCH",
@@ -239,6 +239,11 @@ export default function noteReducer(state = initialState, action) {
         newState.notes = newState.notes.filter(note => note.id !== action.payload.newNote.id)
       }
       newState.pinned.push(action.payload.newNote)
+      return newState
+    case REMOVED_PINNED:
+      newState = Object.assign({}, state)
+      newState.pinned = newState.archived.filter(note => note.id !== action.payload.newNote.id)
+      newState.notes.push(action.payload.newNote)
       return newState
     case EDIT_NOTE:
       newState = Object.assign({}, state);
