@@ -84,6 +84,7 @@ function MainPage(props) {
     setEditShown(noteId);
   };
 
+
   return (
     <div className="main-page-container">
       <NavBar />

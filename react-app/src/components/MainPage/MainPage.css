@@ -1,6 +1,6 @@
 .note-div {
-  width: 12rem;
-  height: 12rem;
+  width: 14rem;
+  height: 5rem;
   /* border: 0.2em inset black; */
   display: flex;
   justify-content: center;
@@ -10,6 +10,7 @@
   box-shadow: 2px 20px 20px -7px rgba(12, 12, 12, 0.35);
   margin: 1rem;
   border-radius: 10%;
+ 
 }
 
 .note-content {
@@ -22,6 +23,7 @@
   align-items: center;
   padding: 0.3rem;
   text-align: center;
+
 }
 
 .notes-container {
