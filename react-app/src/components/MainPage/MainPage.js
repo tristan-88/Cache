@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { getAllNotes, getPinnedNotes } from "../../store/note";
+import { getAllNotes, getPinnedNotes, getArchivedNotes} from "../../store/note";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
+import { pinningNote, unpinningNote, archivingNote, unArchivingNote } from "../../store/note";
 import "./MainPage.css";
 import NoteForm from "../auth/NoteForm/NoteForm";
 import EditForm from "../auth/NoteForm/EditForm";
 import NavBar from "../NavBar/NavBar";
 
 function MainPage(props) {
-  const { notes, pinned, update, user, getAllNotes, getPinnedNotes } = props;
+  const { notes, pinned, update, user, getAllNotes, getPinnedNotes, getArchivedNotes, pinningNote, unpinningNote, archivingNote, unArchivingNote} = props;
   //   const notes = useSelector((state) => state.note.notes);
   //   const user = useSelector((state) =>
   //     state.session.user ? state.session.user : null
@@ -25,6 +26,7 @@ function MainPage(props) {
     if (user) {
       getAllNotes();
       getPinnedNotes();
+      getArchivedNotes();
     }
     if (!isShown) return;
     const closeShown = () => {
@@ -81,7 +83,7 @@ function MainPage(props) {
                 user.id === note.user_id
               ) {
                 return (
-                  //82 - 86 refactor to a component 
+                  //82 - 86 refactor to a component
                   <div key={idx}>
                     <div
                       key={note.id}
@@ -89,6 +91,12 @@ function MainPage(props) {
                       style={{ backgroundColor: `${note.color}` }}
                       onClick={() => handleEdit(note.id)}
                     >
+                      <button className="pinned-button" onClick={note => pinningNote({noteId: note.id, archived: note.archived})}>
+                        <i className="fas fa-thumbtack"></i>
+                      </button>
+                      <button className="archived-button">
+                        <i className="fas fa-archive"></i>
+                      </button>
                       <div className="note-content">{note.content}</div>
                     </div>
                     {isEditShown === note.id && (
@@ -146,6 +154,21 @@ const mapDispatchToProps = (dispatch) => {
     },
     getPinnedNotes: () => {
       dispatch(getPinnedNotes());
+    },
+    getArchivedNotes: () => {
+      dispatch(getArchivedNotes());
+    },
+    pinningNote: (note) => {
+      dispatch(pinningNote(note));
+    },
+    unpinningNote: (note) => {
+      dispatch(getArchivedNotes(note));
+    },
+    archivingNote: (note) => {
+      dispatch(archivingNote(note));
+    },
+    unArchivingNote: (note) => {
+      dispatch(unArchivingNote(note));
     },
   };
 };
