@@ -123,7 +123,7 @@ function MainPage(props) {
                         archivingNote({ noteId: note.id, pinned: note.pinned })
                       }
                     >
-                      <i className="fas fa-archive"></i>
+                      <i className="far fa-caret-square-down"></i>
                     </button>
                     <div
                       key={note.id}
@@ -176,7 +176,7 @@ function MainPage(props) {
                         unpinningNote({ noteId: note.id });
                       }}
                     >
-                      <i className="fas fa-archive"></i>
+                      <i className="far fa-caret-square-down"></i>
                     </button>
                     <div
                       key={note.id}

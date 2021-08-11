@@ -83,7 +83,7 @@ input#radioTeal {
   justify-content: flex-start;
 }
 
-.fas {
+.fas, .far{
   font-size: xx-large;
 }
 .fa-check {

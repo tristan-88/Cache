@@ -95,3 +95,18 @@
   -webkit-text-fill-color: rgba(1, 1, 1, 0);
   -webkit-text-stroke: 0.2rem black;
 }
+
+
+.button-archived,
+.button-pinned,
+.button-post,
+.button-close {
+  background: none;
+  border: none;
+}
+
+.pinned-button,
+.archived-button{
+background: none;
+border: none;
+}

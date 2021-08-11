@@ -345,7 +345,11 @@ const EditForm = ({ note, setEditShown }) => {
               type="submit"
               onClick={postArchived}
             >
-              <i className="fas fa-archive"></i>
+              {archived ? (
+                <i className="far fa-caret-square-up"></i>
+              ) : (
+                <i className="far fa-caret-square-down"></i>
+              )}
             </button>
           </div>
           <div className="post-button">

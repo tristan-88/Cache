@@ -58,3 +58,25 @@
   border: none;
   font-size: 1.2rem;
 }
+
+.fas, .far{
+  font-size: xx-large;
+}
+.fa-check {
+  font-size: x-large;
+}
+
+
+.button-archived,
+.button-pinned,
+.button-post,
+.button-close {
+  background: none;
+  border: none;
+}
+
+.pinned-button,
+.archived-button{
+background: none;
+border: none;
+}

@@ -73,11 +73,9 @@ function ArchivedPage(props) {
                   </button>
                   <button
                     className="archived-button"
-                    onClick={() =>
-                      unarchiving(note)
-                    }
+                    onClick={() => unarchiving(note)}
                   >
-                    <i className="fas fa-archive"></i>
+                    <i className="far fa-caret-square-up"></i>
                   </button>
                   <div
                     key={note.id}
