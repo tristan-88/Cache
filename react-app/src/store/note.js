@@ -260,100 +260,15 @@ export default function noteReducer(state = initialState, action) {
       return newState
     case EDIT_NOTE:
       newState = Object.assign({}, state);
-      //   newState.notes[action.payload.id] = action.payload;
-      if (!action.payload.archived && action.payload.pinned === false) {
-        if (
-          newState.notes.some((note) => note.id === action.payload.id) &&
-          newState.notes !== null
-        ) {
-          newState.notes = state.notes.map((note) => {
-            if (note.id === action.payload.id) {
-              return action.payload;
-            }
-            return note;
-          });
-        } else {
-          //refactor for order?
-          newState.notes.push(action.payload);
-        }
-        if (state.archived) {
-          newState.archived = state.archived.filter(
-            (note) => note.id !== action.payload.id
-          );
-        }
-        if (state.pinned) {
-          newState.pinned = state.pinned.filter(
-            (note) => note.id !== action.payload.id
-          );
-        }
-      }
-      if (action.payload.archived === true) {
-        if (
-          newState.archived.some((note) => note.id === action.payload.id) &&
-          newState.archived !== null
-        ) {
-          newState.archived = state.archived.map((note) => {
-            if (note.id === action.payload.id) {
-              return action.payload;
-            }
-            return note;
-          });
-        } else {
-          //refactor for order??
-          newState.archived.push(action.payload);
-        }
-        if (state.notes) {
-          newState.notes = state.notes.filter(
-            (note) => note.id !== action.payload.id
-          );
-        }
-        if (state.pinned) {
-          newState.pinned = state.pinned.filter(
-            (note) => note.id !== action.payload.id
-          );
-        }
-
-        // try {
-        //   delete newState.notes[action.payload.id];
-        //   delete newState.pinned[action.payload.id];
-        // } catch (error) {
-        //   console.log(error);
-        // }
-        // newState.archived[action.payload.id] = action.payload;
-      }
-      if (action.payload.pinned === true) {
-        if (
-          newState.pinned.some((note) => note.id === action.payload.id) &&
-          newState.pinned !== null
-        ) {
-          newState.pinned = state.pinned.map((note) => {
-            if (note.id === action.payload.id) {
-              return action.payload;
-            }
-            return note;
-          });
-        } else {
-          //refactor for order??
-          newState.pinned.push(action.payload);
-        }
-        if (state.notes) {
-          newState.notes = state.notes.filter(
-            (note) => note.id !== action.payload.id
-          );
-        }
-        if (state.archived) {
-          newState.archived = state.archived.filter(
-            (note) => note.id !== action.payload.id
-          );
-        }
-
-        // try {
-        //   delete newState.notes[action.payload.id];
-        //   delete newState.archived[action.payload.id];
-        // } catch (error) {
-        //   console.log(error);
-        // }
-        // newState.pinned[action.payload.id] = action.payload;
+      newState.notes = newState.notes.filter(note => note.id !== action.payload.id)
+      newState.archived= newState.archived.filter(note => note.id !== action.payload.id)
+      newState.pinned = newState.pinned.filter(note => note.id !== action.payload.id)
+      if (action.payload.pinned) {
+        newState.pinned.push(action.payload)
+      } else if (action.payload.archived) {
+        newState.archived.push(action.payload)
+      } else {
+        newState.notes.push(action.payload)
       }
       return newState;
     case POST_NOTE:
