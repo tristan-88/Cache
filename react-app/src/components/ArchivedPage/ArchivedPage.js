@@ -1,11 +1,18 @@
 import "./ArchivedPage.css";
 import React, { useEffect, useState } from "react";
-import { getArchivedNotes } from "../../store/note";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import EditForm from "../auth/NoteForm/EditForm";
 import NavBar from "../NavBar/NavBar";
-import {pinningNote, unpinningNote, archivingNote, unArchiveNote, getAllNotes, getPinnedNotes} from "../../store/note"
+import {
+  pinningNote,
+  unpinningNote,
+  archivingNote,
+  unArchivingNote,
+  getAllNotes,
+  getPinnedNotes,
+  getArchivedNotes
+} from "../../store/note";
 
 function ArchivedPage(props) {
   const dispatch = useDispatch();
@@ -35,6 +42,11 @@ function ArchivedPage(props) {
     setArchiveNoteShown(archivedId);
   };
 
+  const pinning = (note) => {
+    dispatch(pinningNote({ noteId: note.id, archived: note.archived }))
+    dispatch(unArchivingNote({ noteId: note.id }));
+  }
+
   return (
     <div className='main-page-container'>
       <NavBar />
@@ -49,6 +61,20 @@ function ArchivedPage(props) {
             ) {
               return (
                 <div>
+                  <button
+                    className="pinned-button"
+                    onClick={() => pinning(note)}
+                  >
+                    <i className="fas fa-thumbtack"></i>
+                  </button>
+                  <button
+                    className="archived-button"
+                    onClick={() =>
+                      unArchivingNote({noteId: note.id})
+                    }
+                  >
+                    <i className="fas fa-archive"></i>
+                  </button>
                   <div
                     key={note.id}
                     className="note-div"

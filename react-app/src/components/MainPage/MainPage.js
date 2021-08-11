@@ -164,11 +164,13 @@ function MainPage(props) {
                       </button>
                       <button
                         className="archived-button"
-                        onClick={() =>
-                          archivingNote({
-                            noteId: note.id,
-                            pinned: note.pinned,
-                          })
+                      onClick={() => {
+                        archivingNote({
+                          noteId: note.id,
+                          pinned: note.pinned,
+                        })
+                        unpinningNote({ noteId: note.id})
+                      }
                         }
                       >
                         <i className="fas fa-archive"></i>
