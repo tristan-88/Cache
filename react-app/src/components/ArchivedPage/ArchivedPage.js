@@ -47,6 +47,10 @@ function ArchivedPage(props) {
     dispatch(unArchivingNote({ noteId: note.id }));
   }
 
+  const unarchiving = (note) => {
+    dispatch(unArchivingNote({noteId: note.id}))
+  }
+
   return (
     <div className='main-page-container'>
       <NavBar />
@@ -70,7 +74,7 @@ function ArchivedPage(props) {
                   <button
                     className="archived-button"
                     onClick={() =>
-                      unArchivingNote({noteId: note.id})
+                      unarchiving(note)
                     }
                   >
                     <i className="fas fa-archive"></i>
