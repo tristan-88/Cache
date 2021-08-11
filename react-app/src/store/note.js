@@ -47,24 +47,24 @@ const getPinned = (notes) => ({
   payload: notes,
 });
 
-const pinNote = (note) => ({
+const pinNote = (noteData) => ({
   type: ADD_PINNED,
-  payload: note,
+  payload: noteData,
 });
 
-const unpinNote = (note) => ({
+const unpinNote = (noteData) => ({
   type: REMOVED_PINNED,
-  payload: note,
+  payload: noteData,
 });
 
-const archiveNote = (note) => ({
+const archiveNote = (noteData) => ({
   type: ADD_ARCHIVED,
-  payload: note,
+  payload: noteData,
 });
 
-const unArchiveNote = (note) => ({
+const unArchiveNote = (noteData) => ({
   type: REMOVED_ARCHIVED,
-  payload: note,
+  payload: noteData,
 });
 
 //thunks
@@ -140,19 +140,21 @@ export const editingNote =
   };
 
 export const pinningNote =
-  ({ noteId }) =>
+  ({ noteId, archived }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/${noteId}/pin`, {
       method: "PATCH",
     });
     const data = await response.json();
     if (response.ok) {
-      await dispatch(pinNote(data.note));
+      await dispatch(pinNote({
+        newNote: data.note,
+      archived}));
     }
   };
 
 export const unpinningNote =
-  ({ noteId }) =>
+  ({ noteId, archived }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/${noteId}/unpin`, {
       method: "PATCH",
@@ -164,7 +166,7 @@ export const unpinningNote =
   };
 
 export const archivingNote =
-  ({ noteId }) =>
+  ({ noteId, pinned }) =>
   async (dispatch) => {
     const response = await fetch(`/api/notes/${noteId}/archive`, {
       method: "PATCH",
@@ -230,7 +232,14 @@ export default function noteReducer(state = initialState, action) {
       //   delete newState.archived[action.payload];
       return newState;
     case ADD_PINNED:
-    
+      newState = Object.assign({}, state)
+      if (action.payload.archived) {
+          newState.archived = newState.archived.filter(note => note.id !== action.payload.newNote.id)
+      } else {
+        newState.notes = newState.notes.filter(note => note.id !== action.payload.newNote.id)
+      }
+      newState.pinned.push(action.payload.newNote)
+      return newState
     case EDIT_NOTE:
       newState = Object.assign({}, state);
       //   newState.notes[action.payload.id] = action.payload;
