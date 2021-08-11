@@ -1,7 +1,7 @@
 .note-div {
   width: 12rem;
   height: 12rem;
-  border: 0.2em inset black;
+  /* border: 0.2em inset black; */
   display: flex;
   justify-content: center;
   align-items: center;

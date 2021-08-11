@@ -107,7 +107,7 @@ function MainPage(props) {
                   //82 - 86 refactor to a component
                   <div key={idx}>
                     <button
-                      className="pinned-button"
+                      className="pinned-button main-page"
                       onClick={() =>
                         pinningNote({
                           noteId: note.id,
