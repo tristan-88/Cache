@@ -249,7 +249,7 @@ export default function noteReducer(state = initialState, action) {
       if (action.payload.pinned) {
         newState.pinned = newState.pinned.filter(note => note.id !== action.payload.newNote.id)
       } else {
-        newState.note = newState.note.filter(note => note.id !== action.payload.newNote.id)
+        newState.notes = newState.notes.filter(note => note.id !== action.payload.newNote.id)
       }
       newState.archived.push(action.payload.newNote)
       return newState

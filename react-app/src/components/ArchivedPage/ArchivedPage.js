@@ -5,15 +5,19 @@ import { useDispatch, useSelector, connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import EditForm from "../auth/NoteForm/EditForm";
 import NavBar from "../NavBar/NavBar";
+import {pinningNote, unpinningNote, archivingNote, unArchiveNote, getAllNotes, getPinnedNotes} from "../../store/note"
 
 function ArchivedPage(props) {
   const dispatch = useDispatch();
-  const { archived, user, update } = props;
+  const { archived, user, archivedLength} = props;
   const [archiveNoteShown, setArchiveNoteShown] = useState(0);
+  
 
   useEffect(() => {
     if (user) {
       dispatch(getArchivedNotes());
+      dispatch(getAllNotes())
+      dispatch(getPinnedNotes())
     }
     if (!archiveNoteShown) return;
     const closeShown = () => {
@@ -21,7 +25,7 @@ function ArchivedPage(props) {
     };
     document.addEventListener("submit", closeShown);
     return () => document.removeEventListener("submit", closeShown);
-  }, [update]);
+  }, [archivedLength]);
 
   if (!archived) {
     return null;
@@ -69,7 +73,7 @@ const mapStateToProps = (state) => {
   return {
     archived: state.note.archived,
     user: state.session.user,
-    update: state.note.update,
+    archivedLength: state.note.archived.length
   };
 };
 
