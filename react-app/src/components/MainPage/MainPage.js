@@ -153,35 +153,37 @@ function MainPage(props) {
                 return (
                   <div>
                     <button
-                        className="pinned-button"
-                        onClick={() =>
-                          unpinningNote({
-                            noteId: note.id,
-                          })
-                        }
-                      >
+                      className="pinned-button"
+                      onClick={() =>
+                        unpinningNote({
+                          noteId: note.id,
+                        })
+                      }
+                    >
+                      {pinned ? (
+                        <i className="fas fa-thumbtack rotateNinety"></i>
+                      ) : (
                         <i className="fas fa-thumbtack"></i>
-                      </button>
-                      <button
-                        className="archived-button"
+                      )}
+                    </button>
+                    <button
+                      className="archived-button"
                       onClick={() => {
                         archivingNote({
                           noteId: note.id,
                           pinned: note.pinned,
-                        })
-                        unpinningNote({ noteId: note.id})
-                      }
-                        }
-                      >
-                        <i className="fas fa-archive"></i>
-                      </button>
+                        });
+                        unpinningNote({ noteId: note.id });
+                      }}
+                    >
+                      <i className="fas fa-archive"></i>
+                    </button>
                     <div
                       key={note.id}
                       className="note-div"
                       style={{ backgroundColor: `${note.color}` }}
                       onClick={() => handleEdit(note.id)}
                     >
-                      
                       <div className="note-content">{note.content}</div>
                     </div>
                     {isEditShown === note.id && (
