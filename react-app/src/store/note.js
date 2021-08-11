@@ -253,6 +253,12 @@ export default function noteReducer(state = initialState, action) {
         newState.note = newState.note.filter(note => note.id !== action.payload.newNote.id)
       }
       newState.archived.push(action.payload.newNote)
+      return newState
+    case REMOVED_ARCHIVED:
+      newState = Object.assign({}, state)
+      newState.archived = newState.archived.filter(note => note.id !== action.payload.newNote.id)
+      newState.notes.push(action.payload.newNote)
+      return newState
     case EDIT_NOTE:
       newState = Object.assign({}, state);
       //   newState.notes[action.payload.id] = action.payload;
