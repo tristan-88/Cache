@@ -1,15 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { getAllNotes, getPinnedNotes, getArchivedNotes} from "../../store/note";
+import {
+  getAllNotes,
+  getPinnedNotes,
+  getArchivedNotes,
+} from "../../store/note";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import { pinningNote, unpinningNote, archivingNote, unArchivingNote } from "../../store/note";
+import {
+  pinningNote,
+  unpinningNote,
+  archivingNote,
+  unArchivingNote,
+} from "../../store/note";
 import "./MainPage.css";
 import NoteForm from "../auth/NoteForm/NoteForm";
 import EditForm from "../auth/NoteForm/EditForm";
 import NavBar from "../NavBar/NavBar";
 
 function MainPage(props) {
-  const { notes, pinned, update, user, getAllNotes, getPinnedNotes, getArchivedNotes, pinningNote, unpinningNote, archivingNote, unArchivingNote} = props;
+  const {
+    notes,
+    pinned,
+    pinnedLength,
+    notesLength,
+    user,
+    getAllNotes,
+    getPinnedNotes,
+    getArchivedNotes,
+    pinningNote,
+    unpinningNote,
+    archivingNote,
+    unArchivingNote,
+  } = props;
   //   const notes = useSelector((state) => state.note.notes);
   //   const user = useSelector((state) =>
   //     state.session.user ? state.session.user : null
@@ -38,7 +60,7 @@ function MainPage(props) {
 
     document.addEventListener("submit", closeShown);
     return () => document.removeEventListener("submit", closeShown);
-  }, [update]);
+  }, [notesLength, pinnedLength]);
 
   if (!notes) {
     return null;
@@ -66,7 +88,6 @@ function MainPage(props) {
     <div className="main-page-container">
       <NavBar />
       <div className="notes-area">
-        {" "}
         <div className="create-note-container">
           <div className="create-note" onClick={handleSumbit}>
             Take Note...
@@ -85,18 +106,31 @@ function MainPage(props) {
                 return (
                   //82 - 86 refactor to a component
                   <div key={idx}>
+                    <button
+                      className="pinned-button"
+                      onClick={() =>
+                        pinningNote({
+                          noteId: note.id,
+                          archived: note.archived,
+                        })
+                      }
+                    >
+                      <i className="fas fa-thumbtack"></i>
+                    </button>
+                    <button
+                      className="archived-button"
+                      onClick={() =>
+                        archivingNote({ noteId: note.id, pinned: note.pinned })
+                      }
+                    >
+                      <i className="fas fa-archive"></i>
+                    </button>
                     <div
                       key={note.id}
                       className="note-div"
                       style={{ backgroundColor: `${note.color}` }}
                       onClick={() => handleEdit(note.id)}
                     >
-                      <button className="pinned-button" onClick={note => pinningNote({noteId: note.id, archived: note.archived})}>
-                        <i className="fas fa-thumbtack"></i>
-                      </button>
-                      <button className="archived-button">
-                        <i className="fas fa-archive"></i>
-                      </button>
                       <div className="note-content">{note.content}</div>
                     </div>
                     {isEditShown === note.id && (
@@ -118,12 +152,34 @@ function MainPage(props) {
               ) {
                 return (
                   <div>
+                    <button
+                        className="pinned-button"
+                        onClick={() =>
+                          unpinningNote({
+                            noteId: note.id,
+                          })
+                        }
+                      >
+                        <i className="fas fa-thumbtack"></i>
+                      </button>
+                      <button
+                        className="archived-button"
+                        onClick={() =>
+                          archivingNote({
+                            noteId: note.id,
+                            pinned: note.pinned,
+                          })
+                        }
+                      >
+                        <i className="fas fa-archive"></i>
+                      </button>
                     <div
                       key={note.id}
                       className="note-div"
                       style={{ backgroundColor: `${note.color}` }}
                       onClick={() => handleEdit(note.id)}
                     >
+                      
                       <div className="note-content">{note.content}</div>
                     </div>
                     {isEditShown === note.id && (
@@ -134,7 +190,6 @@ function MainPage(props) {
               }
             })}
         </div>
-
       </div>
     </div>
   );
@@ -143,8 +198,9 @@ const mapStateToProps = (state) => {
   return {
     notes: state.note.notes,
     pinned: state.note.pinned,
-    update: state.note.update,
     user: state.session.user,
+    notesLength: state.note.notes.length,
+    pinnedLength:state.note.pinned.length,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -162,7 +218,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(pinningNote(note));
     },
     unpinningNote: (note) => {
-      dispatch(getArchivedNotes(note));
+      dispatch(unpinningNote(note));
     },
     archivingNote: (note) => {
       dispatch(archivingNote(note));

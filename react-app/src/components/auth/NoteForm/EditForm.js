@@ -33,7 +33,7 @@ const EditForm = ({ note, setEditShown }) => {
       //   setArchived(false);
       //   setPinned(false);
       //   setColor("white");
-         setEditShown(0);
+      setEditShown(0);
     }
   };
 
@@ -72,28 +72,26 @@ const EditForm = ({ note, setEditShown }) => {
   };
 
   const postArchived = (e) => {
-      if (archived === false && pinned === true) {
-      setPinned(false)
+    if (archived === false && pinned === true) {
+      setPinned(false);
       setArchived(true);
     } else if (archived === true && pinned === false) {
-        setArchived(false);
-        setPinned(false)
-      } else {
-        setArchived(true)
-      }
-    
+      setArchived(false);
+      setPinned(false);
+    } else {
+      setArchived(true);
+    }
   };
 
   const postPinned = (e) => {
     if (pinned === false && archived === true) {
-        setPinned(true);
-        setArchived(false)
-      
+      setPinned(true);
+      setArchived(false);
     } else if (pinned === true && archived === false) {
-        setPinned(false);
-       setArchived(false)
+      setPinned(false);
+      setArchived(false);
     } else {
-      setPinned (true)
+      setPinned(true);
     }
   };
   console.log(color);
@@ -107,7 +105,11 @@ const EditForm = ({ note, setEditShown }) => {
               type="submit"
               onClick={postPinned}
             >
-              <i className="fas fa-thumbtack"></i>
+              {pinned ? (
+                <i className="fas fa-thumbtack rotateNinety"></i>
+              ) : (
+                <i className="fas fa-thumbtack"></i>
+              )}
             </button>
           </div>
           <div className="title-div">

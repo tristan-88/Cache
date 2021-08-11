@@ -203,7 +203,6 @@ const initialState = {
   notes: [],
   archived: [],
   pinned: [],
-  update: false,
 };
 
 export default function noteReducer(state = initialState, action) {
@@ -360,22 +359,14 @@ export default function noteReducer(state = initialState, action) {
     case POST_NOTE:
       newState = Object.assign({}, state);
       if (action.payload.archived === true) {
-        if (newState.archived === null) {
-          newState.archived = [];
-        }
         newState.archived.push(action.payload);
       } else if (action.payload.pinned === true) {
-        if (newState.pinned === null) {
-          newState.pinned = [];
-        }
+      
         newState.pinned.push(action.payload);
       } else {
-        if (newState.notes === null) {
-          newState.notes = [];
-        }
+        
         newState.notes.push(action.payload);
       }
-      newState.update = !newState.update;
       return newState;
     default:
       return state;

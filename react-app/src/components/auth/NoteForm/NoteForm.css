@@ -1,4 +1,4 @@
-.form-container{
+.form-container {
   width: 25rem;
   height: 28rem;
   border: 0.2em inset black;
@@ -12,20 +12,17 @@
   border-radius: 10%;
 }
 
-
-.color-circle{
-    width: 1.5em;
-    height: 1.5em;
-    border: 0.1em solid black;
-    border-radius: 50%;
+.color-circle {
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.1em solid black;
+  border-radius: 50%;
 }
 
 /* .label-red:hover{
     background-color: aqua;
 
 } */
-
-
 
 input#radioRed,
 input#radioBlue,
@@ -38,76 +35,86 @@ input#radioBrown,
 input#radioDarkBlue,
 input#radioOrange,
 input#radioGray,
-input#radioTeal{
-    display: hidden;
-    opacity: 0;
-    margin: 1em;
+input#radioTeal {
+  display: hidden;
+  opacity: 0;
+  margin: 1em;
 }
 
 .radio-color {
-    display: flex;
-    padding: 1em;
-    margin: 1em;
-    width: 17em;
-    height: 1em;
-    flex-flow: wrap;
+  display: flex;
+  padding: 1em;
+  margin: 1em;
+  width: 17em;
+  height: 1em;
+  flex-flow: wrap;
 }
 
 .pinned-button {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0.5em;
-    width: 21rem;
-    height: 5em;
-    align-items: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em;
+  width: 21rem;
+  height: 5em;
+  align-items: flex-end;
 }
-
 
 .post-button {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    height: 8em;
-    margin: 0 -1em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 8em;
+  margin: 0 -1em;
 }
-.button-post{
-    font-size: x-large;
+.button-post {
+  font-size: x-large;
 }
 
 .button-archived,
 .button-pinned,
 .button-post,
-.button-close{
-    background: none;
-    border: none;
-    
+.button-close {
+  background: none;
+  border: none;
 }
 
-.close-button{
-    display: flex;
-    justify-content: flex-start;
+.close-button {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.fas{
-    font-size: xx-large;
+.fas {
+  font-size: xx-large;
 }
-.fa-check{
-    font-size: x-large;
-}
-
-.title-div{
-    margin-bottom: 1rem;
+.fa-check {
+  font-size: x-large;
 }
 
-.content-input{
-    width: 15em;
-    height: 10em;
-}
-.input-title{
-    width: 13.7rem;
+.title-div {
+  margin-bottom: 1rem;
 }
 
-.form-page{
-    display: flex;
-    justify-content: center;
+.content-input {
+  width: 15em;
+  height: 10em;
+}
+.input-title {
+  width: 13.7rem;
+}
+
+.form-page {
+  display: flex;
+  justify-content: center;
+}
+
+.rotateNinety {
+  transform: rotate(-90deg);
+  /* Safari */
+  -webkit-transform: rotate(-90deg);
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+  /* Opera */
+  -o-transform: rotate(-90deg);
+  /* IE */
+  -ms-transform: rotate(-90deg);
 }

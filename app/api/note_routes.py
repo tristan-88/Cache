@@ -112,6 +112,7 @@ def update_note(note_id):
 def add_archived(note_id):
     current_note = Note.query.get(note_id)
     current_note.archived = True
+    db.session.commit()
     return {"note": current_note.to_dict()}
 
 @note_routes.route('/<int:note_id>/unarchive', methods=["PATCH"])
@@ -119,20 +120,23 @@ def add_archived(note_id):
 def remove_archived(note_id):
     current_note = Note.query.get(note_id)
     current_note.archived = False
+    db.session.commit()
     return {"note": current_note.to_dict()}
 
 @note_routes.route('/<int:note_id>/pin', methods=["PATCH"])
 @login_required
 def add_pin(note_id):
     current_note = Note.query.get(note_id)
-    current_note.archived = True
+    current_note.pinned = True
+    db.session.commit()
     return {"note": current_note.to_dict()}
 
 @note_routes.route('/<int:note_id>/unpin', methods=["PATCH"])
 @login_required
 def remove_unpin(note_id):
     current_note = Note.query.get(note_id)
-    current_note.archived = False
+    current_note.pinned = False
+    db.session.commit()
     return {"note": current_note.to_dict()}
 
 
