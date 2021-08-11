@@ -173,7 +173,7 @@ export const archivingNote =
     });
     const data = await response.json();
     if (response.ok) {
-      await dispatch(archiveNote({data.note}));
+      await dispatch(archiveNote({newNote: data.note, pinned}));
     }
   };
 
@@ -185,7 +185,7 @@ export const unArchivingNote =
     });
     const data = await response.json();
     if (response.ok) {
-      await dispatch(unArchiveNote(data.note));
+      await dispatch(unArchiveNote({ newNote: data.note}));
     }
   };
 
@@ -245,6 +245,14 @@ export default function noteReducer(state = initialState, action) {
       newState.pinned = newState.archived.filter(note => note.id !== action.payload.newNote.id)
       newState.notes.push(action.payload.newNote)
       return newState
+    case ADD_ARCHIVED:
+      newState = Object.assign({}, state)
+      if (action.payload.pinned) {
+        newState.pinned = newState.pinned.filter(note => note.id !== action.payload.newNote.id)
+      } else {
+        newState.note = newState.note.filter(note => note.id !== action.payload.newNote.id)
+      }
+      newState.archived.push(action.payload.newNote)
     case EDIT_NOTE:
       newState = Object.assign({}, state);
       //   newState.notes[action.payload.id] = action.payload;
