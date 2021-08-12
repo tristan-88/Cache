@@ -101,3 +101,8 @@ border: none;
 .pinned-button .fas {
   font-size: small;
 }
+
+#notePinned{
+  -webkit-text-fill-color: rgba(247, 242, 242, 0);
+  -webkit-text-stroke: 0.2rem black;
+}
