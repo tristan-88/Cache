@@ -10,7 +10,6 @@
   box-shadow: 2px 20px 20px -7px rgba(12, 12, 12, 0.35);
   margin: 1rem;
   border-radius: 10%;
- 
 }
 
 .note-content {
@@ -23,7 +22,6 @@
   align-items: center;
   padding: 0.3rem;
   text-align: center;
-
 }
 
 .notes-container {
@@ -81,12 +79,12 @@
   display: flex;
 }
 
-.nav-container a{
+.nav-container a {
   text-decoration: none;
   font-size: 1.2rem;
 }
 
-.nav-container button{
+.nav-container button {
   text-decoration: none;
   background: none;
   border: none;
@@ -98,7 +96,6 @@
   -webkit-text-stroke: 0.2rem black;
 }
 
-
 .button-archived,
 .button-pinned,
 .button-post,
@@ -108,7 +105,32 @@
 }
 
 .pinned-button,
-.archived-button{
-background: none;
-border: none;
+.archived-button {
+  background: none;
+  border: none;
+}
+/* 
+.archived-button.main-page{
+  opacity: 0;
+} */
+
+.archived-button.main-page .far {
+  font-size: small;
+}
+
+
+.pinned-button .fas {
+  font-size: small;
+}
+
+.main-notes-buttons {
+  display: absolute;
+  position: absolute;
+  align-items: baseline;
+  z-index: 100;
+  padding-right: -45rem;
+  width: 4rem;
+  flex-flow: column;
+  text-align: -webkit-center;
+  
 }

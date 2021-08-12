@@ -54,7 +54,7 @@ input#radioTeal {
   display: flex;
   justify-content: flex-end;
   padding: 0.5em;
-  width: 21rem;
+  /* width: 21rem; */
   height: 5em;
   align-items: flex-end;
 }

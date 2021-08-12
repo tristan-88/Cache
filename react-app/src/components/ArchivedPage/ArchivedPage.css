@@ -82,16 +82,3 @@ border: none;
 
 }
 
-.pinned-button.main-page{
-  opacity: 0;
-  
-}
-
-.pinned-button.pinned-button.main-page:hover{
-  opacity: 1;
-  
-}
-
-.pinned-button .fas{
-  font-size: small;
-}

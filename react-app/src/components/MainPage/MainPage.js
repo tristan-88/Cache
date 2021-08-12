@@ -84,7 +84,6 @@ function MainPage(props) {
     setEditShown(noteId);
   };
 
-
   return (
     <div className="main-page-container">
       <NavBar />
@@ -106,26 +105,32 @@ function MainPage(props) {
               ) {
                 return (
                   //82 - 86 refactor to a component
-                  <div key={idx}>
-                    <button
-                      className="pinned-button main-page"
-                      onClick={() =>
-                        pinningNote({
-                          noteId: note.id,
-                          archived: note.archived,
-                        })
-                      }
-                    >
-                      <i className="fas fa-thumbtack"></i>
-                    </button>
-                    <button
-                      className="archived-button"
-                      onClick={() =>
-                        archivingNote({ noteId: note.id, pinned: note.pinned })
-                      }
-                    >
-                      <i className="far fa-caret-square-down"></i>
-                    </button>
+                  <div key={idx} className="">
+                    <div className="main-notes-buttons">
+                      <button
+                        className="pinned-button main-page"
+                        onClick={() =>
+                          pinningNote({
+                            noteId: note.id,
+                            archived: note.archived,
+                          })
+                        }
+                      >
+                        <i className="fas fa-thumbtack"></i>
+                      </button>
+                      <button
+                        className="archived-button main-page"
+                        onClick={() =>
+                          archivingNote({
+                            noteId: note.id,
+                            pinned: note.pinned,
+                          })
+                        }
+                      >
+                        <i className="far fa-caret-square-down"></i>
+                      </button>
+                    </div>
+
                     <div
                       key={note.id}
                       className="note-div"
@@ -205,7 +210,7 @@ const mapStateToProps = (state) => {
     pinned: state.note.pinned,
     user: state.session.user,
     notesLength: state.note.notes.length,
-    pinnedLength:state.note.pinned.length,
+    pinnedLength: state.note.pinned.length,
   };
 };
 const mapDispatchToProps = (dispatch) => {
