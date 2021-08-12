@@ -112,14 +112,4 @@ input#radioTeal {
   -webkit-text-stroke: 0.2rem black;
 }
 
-.main-notes-buttons{
-    opacity: 0;
-}
-.note-container:hover .main-notes-buttons{
-    opacity: 1;
-}
 
-.note-container{
-    width: fit-content;
-    height: fit-content;
-}

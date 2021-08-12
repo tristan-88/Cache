@@ -2,7 +2,7 @@ import "./ArchivedPage.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import EditForm from "../auth/NoteForm/EditForm";
+import EditFormModal from "../auth/NoteForm/EditForm";
 import NavBar from "../NavBar/NavBar";
 import {
   pinningNote,
@@ -53,47 +53,53 @@ function ArchivedPage(props) {
   return (
     <div className="main-page-container">
       <NavBar />
-      <div className="archived-container">
-        <h1>Archived:</h1>
-        {archived.length &&
-          archived.map((note) => {
-            if (
-              note.archived === true &&
-              note.pinned === false &&
-              user.id === note.user_id
-            ) {
-              return (
-                <div className="note-container">
-                  <div className="archived-notes-buttons">
-                    <button
-                      className="pinned-button"
-                      onClick={() => pinning(note)}
-                    >
-                      <i className="fas fa-thumbtack" id="notePinned"></i>
-                    </button>
-                    <button
-                      className="archived-button archive-page"
-                      onClick={() => unarchiving(note)}
-                    >
-                      <i className="far fa-caret-square-up "></i>
-                    </button>
-                  </div>
+      <div className="notes-area">
+        <h1 className="h1-archived">Archived</h1>
 
-                  <div
-                    key={note.id}
-                    className="note-div"
-                    style={{ backgroundColor: `${note.color}` }}
-                    onClick={() => handleArchived(note.id)}
-                  >
-                    <div className="note-content">{note.content}</div>
+        <div className="archived-container">
+          {archived.length &&
+            archived.map((note) => {
+              if (
+                note.archived === true &&
+                note.pinned === false &&
+                user.id === note.user_id
+              ) {
+                return (
+                  <div className="note-container">
+                    <div className="archived-notes-buttons">
+                      <button
+                        className="pinned-button"
+                        onClick={() => pinning(note)}
+                      >
+                        <i className="fas fa-thumbtack" id="notePinned"></i>
+                      </button>
+                      <button
+                        className="archived-button archive-page"
+                        onClick={() => unarchiving(note)}
+                      >
+                        <i className="far fa-caret-square-up "></i>
+                      </button>
+                    </div>
+
+                    <div
+                      key={note.id}
+                      className="note-div"
+                      style={{ backgroundColor: `${note.color}` }}
+                      onClick={() => handleArchived(note.id)}
+                    >
+                      <div className="note-content">{note.content}</div>
+                    </div>
+                    {archiveNoteShown === note.id && (
+                      <EditFormModal
+                        note={note}
+                        setEditShown={setArchiveNoteShown}
+                      />
+                    )}
                   </div>
-                  {archiveNoteShown === note.id && (
-                    <EditForm note={note} setEditShown={setArchiveNoteShown} />
-                  )}
-                </div>
-              );
-            }
-          })}
+                );
+              }
+            })}
+        </div>
       </div>
     </div>
   );

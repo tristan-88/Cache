@@ -1,6 +1,6 @@
 .note-div {
-  /* width: 14rem;
-  height: 5rem; */
+  width: 14rem;
+  height: 5rem;
   /* border: 0.2em inset black; */
   display: flex;
   justify-content: center;
@@ -25,11 +25,11 @@
 }
 
 .archived-container {
-  margin: 10rem 2rem;
-  width: 90%;
-  height: 50%;
+  margin: 2rem;
+  width: 95%;
+  height: auto;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-wrap: wrap;
   background-color: lavenderblush;
 }
@@ -105,4 +105,21 @@ border: none;
 #notePinned{
   -webkit-text-fill-color: rgba(247, 242, 242, 0);
   -webkit-text-stroke: 0.2rem black;
+}
+
+.archived-notes-buttons{
+    opacity: 0;
+}
+.note-container:hover .archived-notes-buttons{
+    opacity: 1;
+}
+
+.note-container{
+    width: fit-content;
+    height: fit-content;
+}
+
+.h1-archived {
+  margin-left: 1em;
+
 }
