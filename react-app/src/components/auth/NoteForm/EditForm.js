@@ -106,9 +106,9 @@ const EditForm = ({ note, setEditShown }) => {
               onClick={postPinned}
             >
               {pinned ? (
-                <i className="fas fa-thumbtack rotateNinety"></i>
-              ) : (
                 <i className="fas fa-thumbtack"></i>
+              ) : (
+                <i className="fas fa-thumbtack" id="notePinned"></i>
               )}
             </button>
           </div>
@@ -325,17 +325,17 @@ const EditForm = ({ note, setEditShown }) => {
               type="radio"
               value={color}
               name="color"
-              onClick={() => setColor("darkblue")}
-              checked={color === "darkblue"}
-              id="radioDarkBlue"
+              onClick={() => setColor("cornflowerblue")}
+              checked={color === "cornflowerblue"}
+              id="radioCornFlowerBlue"
             />
-            <label htmlFor="radioDarkBlue">
+            <label htmlFor="radioCornFlowerBlue">
               <div
-                className="color-circle darkblue"
-                style={{ backgroundColor: "darkblue" }}
+                className="color-circle cornflowerblue"
+                style={{ backgroundColor: "cornflowerblue" }}
                 onClick={() => clickCircle(color)}
               >
-                {color === "darkblue" ? <i className="fas fa-check"></i> : ""}
+                {color === "cornflowerblue" ? <i className="fas fa-check"></i> : ""}
               </div>
             </label>
           </div>

@@ -32,7 +32,7 @@ input#radioGreen,
 input#radioPink,
 input#radioPurple,
 input#radioBrown,
-input#radioDarkBlue,
+input#radioCornFlowerBlue,
 input#radioOrange,
 input#radioGray,
 input#radioTeal {
@@ -107,7 +107,7 @@ input#radioTeal {
   justify-content: center;
 }
 
-.rotateNinety {
-  -webkit-text-fill-color: rgba(1, 1, 1, 0);
+#notePinned{
+  -webkit-text-fill-color: rgba(247, 242, 242, 0);
   -webkit-text-stroke: 0.2rem black;
 }

@@ -88,7 +88,7 @@ const NoteForm = ({setIsShown}) => {
     onPostNote(e)
     closeShown(e)
   }
-  
+
   console.log(color);
   return (
     <div className="form-page">
@@ -100,7 +100,12 @@ const NoteForm = ({setIsShown}) => {
               type="submit"
               onClick={postPinned}
             >
-              <i className="fas fa-thumbtack"></i>
+              {" "}
+              {pinned ? (
+                <i className="fas fa-thumbtack"></i>
+              ) : (
+                <i className="fas fa-thumbtack" id="notePinned"></i>
+              )}
             </button>
           </div>
           <div className="title-div">
@@ -316,17 +321,21 @@ const NoteForm = ({setIsShown}) => {
               type="radio"
               value={color}
               name="color"
-              onClick={() => setColor("darkblue")}
-              checked={color === "darkblue"}
-              id="radioDarkBlue"
+              onClick={() => setColor("cornflowerblue")}
+              checked={color === "cornflowerblue"}
+              id="radioCornFlowerblue"
             />
-            <label htmlFor="radioDarkBlue">
+            <label htmlFor="radioCornFlowerBlue">
               <div
-                className="color-circle darkblue"
-                style={{ backgroundColor: "darkblue" }}
+                className="color-circle cornflowerblue"
+                style={{ backgroundColor: "cornflowerblue" }}
                 onClick={() => clickCircle(color)}
               >
-                {color === "darkblue" ? <i className="fas fa-check"></i> : ""}
+                {color === "cornflowerblue" ? (
+                  <i className="fas fa-check"></i>
+                ) : (
+                  ""
+                )}
               </div>
             </label>
           </div>

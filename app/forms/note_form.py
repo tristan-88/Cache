@@ -15,7 +15,7 @@ class NoteForm(FlaskForm):
                                            ('gray', 'Gray'),
                                            ('brown', "Brown"),
                                            ('orange', "Orange"),
-                                           ('darkblue', "Dark Blue"),
+                                           ('cornflowerblue', "Dark Blue"),
                                            ('white', "White"),])
     archived = BooleanField("Archived", false_values=None)
     pinned = BooleanField("Pinned", false_values=None)

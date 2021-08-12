@@ -5,7 +5,7 @@ from datetime import datetime
 
 now = datetime.now()
 faker = Faker()
-colors = ["darkblue", 'orange', 'white', "gray",'yellow', 'blue', 'red', 'green', 'pink', 'purple', 'brown', 'teal']
+colors = ["cornflowerblue", 'orange', 'white', "gray",'yellow', 'blue', 'red', 'green', 'pink', 'purple', 'brown', 'teal']
 boolean = [True, False]
 
 def seed_notes():

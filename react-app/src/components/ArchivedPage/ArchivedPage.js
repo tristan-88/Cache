@@ -69,7 +69,7 @@ function ArchivedPage(props) {
                     className="pinned-button"
                     onClick={() => pinning(note)}
                   >
-                    <i className="fas fa-thumbtack"></i>
+                    <i className="fas fa-thumbtack" id="notePinned"></i>
                   </button>
                   <button
                     className="archived-button"

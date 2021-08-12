@@ -116,7 +116,7 @@ function MainPage(props) {
                           })
                         }
                       >
-                        <i className="fas fa-thumbtack"></i>
+                        <i className="fas fa-thumbtack" id="notePinned"></i>
                       </button>
                       <button
                         className="archived-button main-page"
@@ -159,7 +159,7 @@ function MainPage(props) {
                 return (
                   <div>
                     <button
-                      className="pinned-button"
+                      className="pinned-button main-page"
                       onClick={() =>
                         unpinningNote({
                           noteId: note.id,
@@ -167,13 +167,13 @@ function MainPage(props) {
                       }
                     >
                       {pinned ? (
-                        <i className="fas fa-thumbtack rotateNinety"></i>
-                      ) : (
                         <i className="fas fa-thumbtack"></i>
+                      ) : (
+                        <i className="fas fa-thumbtack" id="notePinned"></i>
                       )}
                     </button>
                     <button
-                      className="archived-button"
+                      className="archived-button main-page"
                       onClick={() => {
                         archivingNote({
                           noteId: note.id,
