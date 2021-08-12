@@ -14,8 +14,9 @@ import {
 } from "../../store/note";
 import "./MainPage.css";
 import NoteForm from "../auth/NoteForm/NoteForm";
-import EditForm from "../auth/NoteForm/EditForm";
+// import EditForm from "../auth/NoteForm/EditForm";
 import NavBar from "../NavBar/NavBar";
+import EditFormModal from "../auth/NoteForm/EditForm";
 
 function MainPage(props) {
   const {
@@ -140,7 +141,7 @@ function MainPage(props) {
                       <div className="note-content">{note.content}</div>
                     </div>
                     {isEditShown === note.id && (
-                      <EditForm note={note} setEditShown={setEditShown} />
+                      <EditFormModal note={note} setEditShown={setEditShown} />
                     )}
                   </div>
                 );
@@ -191,7 +192,7 @@ function MainPage(props) {
                       <div className="note-content">{note.content}</div>
                     </div>
                     {isEditShown === note.id && (
-                      <EditForm note={note} setEditShown={setEditShown} />
+                      <EditFormModal note={note} setEditShown={setEditShown} />
                     )}
                   </div>
                 );

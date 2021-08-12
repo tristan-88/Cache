@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import note from './note'
 import color from './color'
+import modal from './modal'
 
 
 const rootReducer = combineReducers({
     session,
     note,
     color,
+    modal,
 });
 
 let enhancer;
