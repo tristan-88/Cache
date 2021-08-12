@@ -82,3 +82,22 @@ border: none;
 
 }
 
+.archived-notes-buttons{
+  display: absolute;
+  position: absolute;
+  align-items: baseline;
+  z-index: 100;
+  padding-right: -45rem;
+  width: 4rem;
+  flex-flow: column;
+  text-align: -webkit-center;
+}
+
+.archived-button.archive-page .far {
+  font-size: small;
+}
+
+
+.pinned-button .fas {
+  font-size: small;
+}

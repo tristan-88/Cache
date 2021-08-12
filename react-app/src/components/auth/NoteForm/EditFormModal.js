@@ -4,17 +4,17 @@ import { Modal } from "../../Modal/Modal";
 import EditForm from "./EditForm";
 
 function EditFormModal({ note, setEditShown }) {
-  const modalToggle = () => {
-    setEditShown(1);
+  const modalToggle = (noteId) => {
+    setEditShown(noteId);
   };
 
-  const closeAll = () => {
-    setEditShown(0);
+  const closeAll = (noteId) => {
+    setEditShown(noteId);
   };
 
   return (
-    <div onClick={modalToggle}>
-      <Modal onClose={closeAll}>
+    <div onClick={() => modalToggle(note.id)}>
+      <Modal onClose={() => closeAll(note.id)}>
         <EditForm note={note} setEditShow={setEditShown} />
       </Modal>
     </div>
