@@ -22,16 +22,13 @@ function SplashPage() {
             <h1>Welcome to Cache</h1>
           </div>
           <div className="splash-links">
-            <div>
-              <NavLink to="/sign-up" className="signup-link">
-                Sign-Up
-              </NavLink>
-            </div>
-            <div>
-              <NavLink to="/login" className="login-link">
-                Log-In
-              </NavLink>
-            </div>
+            <NavLink to="/sign-up" className="signup-link">
+              Sign-Up
+            </NavLink>
+
+            <NavLink to="/login" className="login-link">
+              Log-In
+            </NavLink>
           </div>
         </div>
       )}
