@@ -43,8 +43,8 @@ const SignUpForm = () => {
     <div className="sign-up-container">
       <div className="sign-up-form-container">
         <div className="form-style">
-          <h1 className="sign-up-h1">Sign Up</h1>
-          <form onSubmit={onSignUp} className="form-itself">
+          
+          <form onSubmit={onSignUp} className="form-itself"><h1 className="sign-up-h1">Sign Up</h1>
             <div>
               <label>User Name</label>
               <input
@@ -53,6 +53,7 @@ const SignUpForm = () => {
                 onChange={updateUsername}
                 value={username}
                 className="form-input"
+                placeholder="User Name"
               ></input>
             </div>
             <div>
@@ -63,6 +64,7 @@ const SignUpForm = () => {
                 name="email"
                 onChange={updateEmail}
                 value={email}
+                placeholder="Email"
               ></input>
             </div>
             <div>
@@ -73,6 +75,7 @@ const SignUpForm = () => {
                 name="password"
                 onChange={updatePassword}
                 value={password}
+                placeholder="Password"
               ></input>
             </div>
             <div>
@@ -81,15 +84,17 @@ const SignUpForm = () => {
                 className="form-input"
                 type="password"
                 name="repeat_password"
+                placeholder="Repeat Password"
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
                 required={true}
               ></input>
             </div>
-            <button type="submit">Sign Up</button>
+            <button type="submit" className="signing-button">Sign Up</button>
             <div className="text">
-              Already Have an Account?
-              <NavLink to="/login">Log In</NavLink>
+              {`Already have an account? `}
+              {" "}
+              <NavLink to="/login" style={{textDecoration:"none", color:"blue", cursor:"pointer"}}> Log In</NavLink>
             </div>
           </form>
         </div>
