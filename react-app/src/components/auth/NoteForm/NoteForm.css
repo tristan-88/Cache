@@ -111,3 +111,15 @@ input#radioTeal {
   -webkit-text-fill-color: rgba(247, 242, 242, 0);
   -webkit-text-stroke: 0.2rem black;
 }
+
+.main-notes-buttons{
+    opacity: 0;
+}
+.note-container:hover .main-notes-buttons{
+    opacity: 1;
+}
+
+.note-container{
+    width: fit-content;
+    height: fit-content;
+}

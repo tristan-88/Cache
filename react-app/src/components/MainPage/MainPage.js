@@ -105,7 +105,7 @@ function MainPage(props) {
               ) {
                 return (
                   //82 - 86 refactor to a component
-                  <div key={idx} className="">
+                  <div key={idx} className="note-container">
                     <div className="main-notes-buttons">
                       <button
                         className="pinned-button main-page"
@@ -157,33 +157,31 @@ function MainPage(props) {
                 user.id === note.user_id
               ) {
                 return (
-                  <div>
-                    <button
-                      className="pinned-button main-page"
-                      onClick={() =>
-                        unpinningNote({
-                          noteId: note.id,
-                        })
-                      }
-                    >
-                      {pinned ? (
-                        <i className="fas fa-thumbtack"></i>
-                      ) : (
+                  <div className="note-container">
+                    <div className="main-notes-buttons">
+                      <button
+                        className="pinned-button main-page"
+                        onClick={() =>
+                          pinningNote({
+                            noteId: note.id,
+                            archived: note.archived,
+                          })
+                        }
+                      >
                         <i className="fas fa-thumbtack" id="notePinned"></i>
-                      )}
-                    </button>
-                    <button
-                      className="archived-button main-page"
-                      onClick={() => {
-                        archivingNote({
-                          noteId: note.id,
-                          pinned: note.pinned,
-                        });
-                        unpinningNote({ noteId: note.id });
-                      }}
-                    >
-                      <i className="far fa-caret-square-down"></i>
-                    </button>
+                      </button>
+                      <button
+                        className="archived-button main-page"
+                        onClick={() =>
+                          archivingNote({
+                            noteId: note.id,
+                            pinned: note.pinned,
+                          })
+                        }
+                      >
+                        <i className="far fa-caret-square-down"></i>
+                      </button>
+                    </div>
                     <div
                       key={note.id}
                       className="note-div"
