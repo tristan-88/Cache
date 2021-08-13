@@ -1,15 +1,21 @@
 .form-container {
-  width: 25rem;
-  height: 28rem;
+  width: 35rem;
+  height: 18rem;
   border: 0.2em inset black;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -ms-flex-pack: center;
+  /* justify-content: center; */
+  -ms-flex-align: center;
   align-items: center;
-  flex-direction: row;
+  -ms-flex-direction: row;
+  /* flex-direction: revert; */
   padding: 2rem;
-  box-shadow: 2px 20px 20px -7px rgba(12, 12, 12, 0.35);
+  -webkit-box-shadow: 2px 20px 20px -7px rgb(12 12 12 / 35%);
+  box-shadow: 2px 20px 20px -7px rgb(12 12 12 / 35%);
   margin: 1rem;
-  border-radius: 10%;
+  border-radius: 1rem;
+  justify-content: space-evenly;
 }
 
 .color-circle {
@@ -43,17 +49,19 @@ input#radioTeal {
 
 .radio-color {
   display: flex;
-  padding: 1em;
-  margin: 1em;
-  width: 17em;
+  padding-top: 1rem;
+  margin: 0em;
+  width: 27em;
   height: 1em;
   flex-flow: wrap;
+
+  padding-bottom: 5rem;
 }
 
-.pinned-button.note-form {
+.pinned-Button.note-form {
   /* display: flex;
   justify-content: flex-end;
-  padding: 0.5em;
+ */
   /* width: 21rem; */
   /* height: 5em;
   align-items: flex-end;  */
@@ -77,6 +85,18 @@ input#radioTeal {
   border: none;
 }
 
+button.button-post{
+    font-size: large;
+}
+
+button.button-close{
+ font-size: medium;
+}
+
+.fas.button-pinned{
+    font-size: x-large;
+}
+
 .close-button {
   display: flex;
   justify-content: flex-start;
@@ -84,7 +104,7 @@ input#radioTeal {
 
 .fas,
 .far {
-  font-size: xx-large;
+  font-size: x-large;
 }
 .fa-check {
   font-size: x-large;
@@ -95,11 +115,15 @@ input#radioTeal {
 }
 
 .content-input {
-  width: 15em;
-  height: 10em;
+  min-width: 20rem;
+  min-height: 5rem;
+  border: none;
+  background: none;
 }
 .input-title {
-  width: 13.7rem;
+  border: none;
+  background: none;
+  min-height: 2rem;
 }
 
 .form-page {
@@ -116,5 +140,12 @@ input#radioTeal {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
+}
+
+.closeAndpinned {
+  display: flex;
+  justify-content: flex-end;
+  height: 0rem;
+  z-index: 10000;
 }

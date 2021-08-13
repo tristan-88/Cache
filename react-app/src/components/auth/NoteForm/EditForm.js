@@ -100,7 +100,7 @@ const EditForm = ({ note, setEditShown }) => {
       <div className="form-container" style={{ backgroundColor: `${color}` }}>
         <form onSubmit={onEditNote}>
           <div className="closeAndpinned">
-            <div className="pinned-button note-form">
+            <div className="pinned-Button note-form">
               <button
                 className="button-archived"
                 type="submit"
@@ -113,33 +113,32 @@ const EditForm = ({ note, setEditShown }) => {
                 )}
               </button>
             </div>
-            <div className="close-button">
-              <button className="button-close" onClick={closeShown}>
-                <i className="fas fa-times"></i>
-              </button>
+          </div>
+          <div className="text-divs">
+            <div className="title-div">
+              {/* <label>Title </label> */}
+              <input
+                type="text"
+                name="Title"
+                onChange={postTitle}
+                value={title}
+                className="input-title"
+                placeholder="Title"
+              ></input>
+            </div>
+            <div className="content-div">
+              {/* <label>Content </label> */}
+              <input
+                type="text"
+                name="Content"
+                onChange={postContent}
+                value={content}
+                className="content-input"
+                placeholder="Content"
+              ></input>
             </div>
           </div>
 
-          <div className="title-div">
-            <label>Title </label>
-            <input
-              type="text"
-              name="Title"
-              onChange={postTitle}
-              value={title}
-              className="input-title"
-            ></input>
-          </div>
-          <div className="content-div">
-            <label>Content </label>
-            <input
-              type="text"
-              name="Content"
-              onChange={postContent}
-              value={content}
-              className="content-input"
-            ></input>
-          </div>
           <div className="radio-color">
             <input
               type="radio"
@@ -368,6 +367,13 @@ const EditForm = ({ note, setEditShown }) => {
             <div className="post-button note-form">
               <button className="button-post" type="submit">
                 Post
+              </button>
+            </div>
+
+            <div className="close-button">
+              <button className="button-close" onClick={closeShown}>
+                {/* <i className="fas fa-times"></i> */}
+                Close
               </button>
             </div>
           </div>
