@@ -93,7 +93,7 @@
 
 .rotateNinety {
   -webkit-text-fill-color: rgba(1, 1, 1, 0);
-  -webkit-text-stroke: 0.2rem black;
+  -webkit-text-stroke: 0.1rem black;
 }
 
 .button-archived,
@@ -137,7 +137,7 @@
 
 #notePinned{
   -webkit-text-fill-color: rgba(247, 242, 242, 0);
-  -webkit-text-stroke: 0.2rem black;
+  -webkit-text-stroke: 0.1rem black;
 }
 
 .main-notes-buttons{

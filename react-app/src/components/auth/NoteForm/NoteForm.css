@@ -1,7 +1,7 @@
 .form-container {
   width: 35rem;
   height: 18rem;
-  border: 0.2em inset black;
+  /* border: 0.2em inset black; */
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: center;
@@ -13,7 +13,7 @@
   padding: 2rem;
   -webkit-box-shadow: 2px 20px 20px -7px rgb(12 12 12 / 35%);
   box-shadow: 2px 20px 20px -7px rgb(12 12 12 / 35%);
-  margin: 1rem;
+  margin: 2rem;
   border-radius: 1rem;
   justify-content: space-evenly;
 }
@@ -133,7 +133,7 @@ button.button-close{
 
 #notePinned {
   -webkit-text-fill-color: rgba(247, 242, 242, 0);
-  -webkit-text-stroke: 0.2rem black;
+  -webkit-text-stroke: 0.1rem black;
 }
 
 .postAndarchived-buttons {
@@ -148,4 +148,11 @@ button.button-close{
   justify-content: flex-end;
   height: 0rem;
   z-index: 10000;
+}
+
+  ::placeholder { 
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:black;
+  opacity: 1; 
+  font-size: large;
 }

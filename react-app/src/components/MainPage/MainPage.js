@@ -162,14 +162,12 @@ function MainPage(props) {
                     <div className="main-notes-buttons">
                       <button
                         className="pinned-button main-page"
-                        onClick={() =>
-                          pinningNote({
-                            noteId: note.id,
-                            archived: note.archived,
+                        onClick={() => unpinningNote({
+                            noteId: note.id
                           })
                         }
                       >
-                        <i className="fas fa-thumbtack" id="notePinned"></i>
+                        <i className="fas fa-thumbtack"></i>
                       </button>
                       <button
                         className="archived-button main-page"
