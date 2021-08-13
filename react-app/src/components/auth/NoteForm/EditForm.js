@@ -99,19 +99,27 @@ const EditForm = ({ note, setEditShown }) => {
     <div className="form-page">
       <div className="form-container" style={{ backgroundColor: `${color}` }}>
         <form onSubmit={onEditNote}>
-          <div className="pinned-button">
-            <button
-              className="button-archived"
-              type="submit"
-              onClick={postPinned}
-            >
-              {pinned ? (
-                <i className="fas fa-thumbtack"></i>
-              ) : (
-                <i className="fas fa-thumbtack" id="notePinned"></i>
-              )}
-            </button>
+          <div className="closeAndpinned">
+            <div className="pinned-button note-form">
+              <button
+                className="button-archived"
+                type="submit"
+                onClick={postPinned}
+              >
+                {pinned ? (
+                  <i className="fas fa-thumbtack"></i>
+                ) : (
+                  <i className="fas fa-thumbtack" id="notePinned"></i>
+                )}
+              </button>
+            </div>
+            <div className="close-button">
+              <button className="button-close" onClick={closeShown}>
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
           </div>
+
           <div className="title-div">
             <label>Title </label>
             <input
@@ -335,33 +343,35 @@ const EditForm = ({ note, setEditShown }) => {
                 style={{ backgroundColor: "cornflowerblue" }}
                 onClick={() => clickCircle(color)}
               >
-                {color === "cornflowerblue" ? <i className="fas fa-check"></i> : ""}
+                {color === "cornflowerblue" ? (
+                  <i className="fas fa-check"></i>
+                ) : (
+                  ""
+                )}
               </div>
             </label>
           </div>
-          <div className="archived-button">
-            <button
-              className="button-archived"
-              type="submit"
-              onClick={postArchived}
-            >
-              {archived ? (
-                <i className="far fa-caret-square-up"></i>
-              ) : (
-                <i className="far fa-caret-square-down"></i>
-              )}
-            </button>
+          <div className="postAndarchived-buttons">
+            <div className="archived-button note-form">
+              <button
+                className="button-archived"
+                type="submit"
+                onClick={postArchived}
+              >
+                {archived ? (
+                  <i className="far fa-caret-square-up"></i>
+                ) : (
+                  <i className="far fa-caret-square-down"></i>
+                )}
+              </button>
+            </div>
+            <div className="post-button note-form">
+              <button className="button-post" type="submit">
+                Post
+              </button>
+            </div>
           </div>
-          <div className="post-button">
-            <button className="button-post" type="submit">
-              Post
-            </button>
-          </div>
-          <div className="close-button"></div>
         </form>
-        <button className="button-close" onClick={closeShown}>
-          <i className="fas fa-times"></i>
-        </button>
       </div>
     </div>
   );

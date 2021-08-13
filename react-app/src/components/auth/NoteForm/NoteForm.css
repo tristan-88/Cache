@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  padding: 1rem;
+  padding: 2rem;
   box-shadow: 2px 20px 20px -7px rgba(12, 12, 12, 0.35);
   margin: 1rem;
   border-radius: 10%;
@@ -50,21 +50,20 @@ input#radioTeal {
   flex-flow: wrap;
 }
 
-.pinned-button {
-  display: flex;
+.pinned-button.note-form {
+  /* display: flex;
   justify-content: flex-end;
   padding: 0.5em;
   /* width: 21rem; */
-  height: 5em;
-  align-items: flex-end;
+  /* height: 5em;
+  align-items: flex-end;  */
 }
 
-.post-button {
+.post-button.note-form {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  height: 8em;
-  margin: 0 -1em;
+  align-self: center;
+  margin: 0 -2rem;
+  padding: 0 0rem;
 }
 .button-post {
   font-size: x-large;
@@ -83,7 +82,8 @@ input#radioTeal {
   justify-content: flex-start;
 }
 
-.fas, .far{
+.fas,
+.far {
   font-size: xx-large;
 }
 .fa-check {
@@ -107,9 +107,14 @@ input#radioTeal {
   justify-content: center;
 }
 
-#notePinned{
+#notePinned {
   -webkit-text-fill-color: rgba(247, 242, 242, 0);
   -webkit-text-stroke: 0.2rem black;
 }
 
-
+.postAndarchived-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5rem;
+}

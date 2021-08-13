@@ -5,7 +5,7 @@ import { postingNote } from "../../../store/note";
 import React, { useState, useEffect } from "react";
 import * as colorAction from "../../../store/color";
 
-const NoteForm = ({setIsShown}) => {
+const NoteForm = ({ setIsShown }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
@@ -34,8 +34,6 @@ const NoteForm = ({setIsShown}) => {
   useEffect(() => {
     dispatch(settingColor(color));
 
-   
-
     // document.addEventListener("submit", closeShown);
     // return () => document.removeEventListener("submit", closeShown);
   }, [close, color, checkedCircle]);
@@ -45,7 +43,7 @@ const NoteForm = ({setIsShown}) => {
   };
 
   const closeShown = () => {
-   setIsShown(false)
+    setIsShown(false);
     // setIsShown(false);
     // let note = document.getElementsByClassName("form-container");
     // let display = note[0].style.display;
@@ -85,18 +83,18 @@ const NoteForm = ({setIsShown}) => {
   };
 
   const onPosting = (e) => {
-    onPostNote(e)
-    closeShown(e)
-  }
+    onPostNote(e);
+    closeShown(e);
+  };
 
   console.log(color);
   return (
     <div className="form-page">
       <div className="form-container" style={{ backgroundColor: `${color}` }}>
         <form onSubmit={onPosting}>
-          <div className="pinned-button">
+          <div className="pinned-button note-form">
             <button
-              className="button-archived"
+              className="button-pinned"
               type="submit"
               onClick={postPinned}
             >
@@ -323,7 +321,7 @@ const NoteForm = ({setIsShown}) => {
               name="color"
               onClick={() => setColor("cornflowerblue")}
               checked={color === "cornflowerblue"}
-              id="radioCornFlowerblue"
+              id="radioCornFlowerBlue"
             />
             <label htmlFor="radioCornFlowerBlue">
               <div
@@ -339,7 +337,7 @@ const NoteForm = ({setIsShown}) => {
               </div>
             </label>
           </div>
-          <div className="archived-button">
+          <div className="archived-button note-form">
             <button
               className="button-archived"
               type="submit"
@@ -348,16 +346,17 @@ const NoteForm = ({setIsShown}) => {
               <i className="fas fa-archive"></i>
             </button>
           </div>
-          <div className="post-button">
+          <div className="post-button note-form">
             <button className="button-post" type="submit">
               Post
             </button>
           </div>
-          <div className="close-button"></div>
         </form>
-        <button className="button-close" onClick={closeShown}>
-          <i className="fas fa-times"></i>
-        </button>
+        <div className="close-button note-form">
+          <button className="button-close" onClick={closeShown}>
+            <i className="fas fa-times"></i>
+          </button>
+        </div>
       </div>
     </div>
   );

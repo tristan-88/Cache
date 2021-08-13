@@ -13,9 +13,9 @@
 }
 
 .note-content {
-  -webkit-backdrop-filter: blur(20px);
+  /* -webkit-backdrop-filter: blur(20px);
   background-color: rgba(230, 230, 230, 0.322);
-  backdrop-filter: blur(165px);
+  backdrop-filter: blur(165px); */
   display: flex;
   width: 10.5rem;
   height: 5.5rem;
@@ -150,4 +150,14 @@
 .note-container{
     width: fit-content;
     height: fit-content;
+}
+
+
+.pinned-button {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em;
+  /* width: 21rem; */
+  height: 5em;
+  align-items: flex-end;
 }

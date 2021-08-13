@@ -44,7 +44,8 @@ const SignUpForm = () => {
       <div className="sign-up-form-container">
         <div className="form-style">
           
-          <form onSubmit={onSignUp} className="form-itself"><h1 className="sign-up-h1">Sign Up</h1>
+          <form onSubmit={onSignUp} className="form-itself">
+            <h1 className="sign-up-h1">Sign Up</h1>
             <div>
               <label>User Name</label>
               <input
@@ -98,7 +99,6 @@ const SignUpForm = () => {
             </div>
           </form>
         </div>
-        
       </div>
     </div>
   );

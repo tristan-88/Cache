@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import  { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, NavLink} from "react-router-dom";
 import { login } from "../../store/session";
+import "./FormStyle.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user);
+  const user = useSelector((state) => state.session.user);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,34 +32,59 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
+    <div className="sign-up-container">
+      <div className="sign-up-form-container">
+        <div className="form-style">
+          <form onSubmit={onLogin} className="form-itself">
+            <h1 className="sign-up-h1">Log In</h1>
+            <div>
+              {errors.map((error) => (
+                <div>{error}</div>
+              ))}
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                className="form-input"
+                name="email"
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input
+                className="form-input"
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={updatePassword}
+              />
+              <button type="submit" className="signing-button">
+                Login
+              </button>
+              <div className="text">
+                {`Do not have account?`}{" "}
+                <NavLink
+                  to="/sign-up"
+                  style={{
+                    textDecoration: "none",
+                    color: "blue",
+                    cursor: "pointer",
+                  }}
+                >
+                  {" "}
+                  Sign Up
+                </NavLink>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Login</button>
-      </div>
-    </form>
+    </div>
   );
 };
 

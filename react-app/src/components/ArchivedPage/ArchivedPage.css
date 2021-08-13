@@ -13,10 +13,10 @@
 }
 
 .note-content {
-  -webkit-backdrop-filter: blur(20px);
+  /* -webkit-backdrop-filter: blur(20px);
   background-color: rgba(230, 230, 230, 0.322);
   backdrop-filter: blur(165px);
-  display: flex;
+  display: flex; */
   width: 10.5rem;
   height: 5.5rem;
   align-items: center;
@@ -121,5 +121,5 @@ border: none;
 
 .h1-archived {
   margin-left: 1em;
-
+margin-top: 9rem;
 }
