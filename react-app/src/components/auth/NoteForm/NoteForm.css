@@ -11,8 +11,7 @@
   -ms-flex-direction: row;
   /* flex-direction: revert; */
   padding: 2rem;
-  -webkit-box-shadow: 2px 20px 20px -7px rgb(12 12 12 / 35%);
-  box-shadow: 2px 20px 20px -7px rgb(12 12 12 / 35%);
+box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
   margin: 2rem;
   border-radius: 1rem;
   justify-content: space-evenly;
