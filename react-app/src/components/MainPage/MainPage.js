@@ -95,6 +95,56 @@ function MainPage(props) {
           </div>
         </div>
         {isShown && <NoteForm setIsShown={setIsShown} />}
+        <h1 className="h1-pinned">Pinned Notes</h1>
+        <div className="pinned-container">
+          {pinned.length > 0 &&
+            pinned.map((note) => {
+              if (
+                note.archived === false &&
+                note.pinned === true &&
+                user.id === note.user_id
+              ) {
+                return (
+                  <div className="note-container">
+                    <div className="main-notes-buttons">
+                      <button
+                        className="pinned-button main-page"
+                        onClick={() =>
+                          unpinningNote({
+                            noteId: note.id,
+                          })
+                        }
+                      >
+                        <i className="fas fa-thumbtack"></i>
+                      </button>
+                      <button
+                        className="archived-button main-page"
+                        onClick={() =>
+                          archivingNote({
+                            noteId: note.id,
+                            pinned: note.pinned,
+                          })
+                        }
+                      >
+                        <i className="far fa-caret-square-down"></i>
+                      </button>
+                    </div>
+                    <div
+                      key={note.id}
+                      className="note-div"
+                      style={{ backgroundColor: `${note.color}` }}
+                      onClick={() => handleEdit(note.id)}
+                    >
+                      <div className="note-content">{note.content}</div>
+                    </div>
+                    {isEditShown === note.id && (
+                      <EditFormModal note={note} setEditShown={setEditShown} />
+                    )}
+                  </div>
+                );
+              }
+            })}
+        </div>
         <h1 className="h1-notes">Notes</h1>
         <div className="notes-container">
           {notes.length > 0 &&
@@ -132,55 +182,6 @@ function MainPage(props) {
                       </button>
                     </div>
 
-                    <div
-                      key={note.id}
-                      className="note-div"
-                      style={{ backgroundColor: `${note.color}` }}
-                      onClick={() => handleEdit(note.id)}
-                    >
-                      <div className="note-content">{note.content}</div>
-                    </div>
-                    {isEditShown === note.id && (
-                      <EditFormModal note={note} setEditShown={setEditShown} />
-                    )}
-                  </div>
-                );
-              }
-            })}
-        </div>
-        <h1 className="h1-pinned">Pinned Notes</h1>
-        <div className="pinned-container">
-          {pinned.length > 0 &&
-            pinned.map((note) => {
-              if (
-                note.archived === false &&
-                note.pinned === true &&
-                user.id === note.user_id
-              ) {
-                return (
-                  <div className="note-container">
-                    <div className="main-notes-buttons">
-                      <button
-                        className="pinned-button main-page"
-                        onClick={() => unpinningNote({
-                            noteId: note.id
-                          })
-                        }
-                      >
-                        <i className="fas fa-thumbtack"></i>
-                      </button>
-                      <button
-                        className="archived-button main-page"
-                        onClick={() =>
-                          archivingNote({
-                            noteId: note.id,
-                            pinned: note.pinned,
-                          })
-                        }
-                      >
-                        <i className="far fa-caret-square-down"></i>
-                      </button>
-                    </div>
                     <div
                       key={note.id}
                       className="note-div"
