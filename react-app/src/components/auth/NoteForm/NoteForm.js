@@ -92,40 +92,46 @@ const NoteForm = ({ setIsShown }) => {
     <div className="form-page">
       <div className="form-container" style={{ backgroundColor: `${color}` }}>
         <form onSubmit={onPosting}>
-          <div className="pinned-button note-form">
-            <button
-              className="button-pinned"
-              type="submit"
-              onClick={postPinned}
-            >
-              {" "}
-              {pinned ? (
-                <i className="fas fa-thumbtack"></i>
-              ) : (
-                <i className="fas fa-thumbtack" id="notePinned"></i>
-              )}
-            </button>
+          <div className="closeAndpinned">
+            <div className="pinned-Button note-form">
+              <button
+                className="button-archived"
+                type="submit"
+                onClick={postPinned}
+              >
+                {pinned ? (
+                  <i className="fas fa-thumbtack"></i>
+                ) : (
+                  <i className="fas fa-thumbtack" id="notePinned"></i>
+                )}
+              </button>
+            </div>
           </div>
-          <div className="title-div">
-            <label>Title </label>
-            <input
-              type="text"
-              name="Title"
-              onChange={postTitle}
-              value={title}
-              className="input-title"
-            ></input>
+          <div className="text-divs">
+            <div className="title-div">
+              {/* <label>Title </label> */}
+              <input
+                type="text"
+                name="Title"
+                onChange={postTitle}
+                value={title}
+                className="input-title"
+                placeholder="Title"
+              ></input>
+            </div>
+            <div className="content-div">
+              {/* <label>Content </label> */}
+              <input
+                type="text"
+                name="Content"
+                onChange={postContent}
+                value={content}
+                className="content-input"
+                placeholder="Content"
+              ></input>
+            </div>
           </div>
-          <div className="content-div">
-            <label>Content </label>
-            <input
-              type="text"
-              name="Content"
-              onChange={postContent}
-              value={content}
-              className="content-input"
-            ></input>
-          </div>
+
           <div className="radio-color">
             <input
               type="radio"
@@ -337,26 +343,34 @@ const NoteForm = ({ setIsShown }) => {
               </div>
             </label>
           </div>
-          <div className="archived-button note-form">
-            <button
-              className="button-archived"
-              type="submit"
-              onClick={postArchived}
-            >
-              <i className="fas fa-archive"></i>
-            </button>
-          </div>
-          <div className="post-button note-form">
-            <button className="button-post" type="submit">
-              Post
-            </button>
+          <div className="postAndarchived-buttons">
+            <div className="archived-button note-form">
+              <button
+                className="button-archived"
+                type="submit"
+                onClick={postArchived}
+              >
+                {archived ? (
+                  <i className="far fa-caret-square-up"></i>
+                ) : (
+                  <i className="far fa-caret-square-down"></i>
+                )}
+              </button>
+            </div>
+            <div className="post-button note-form">
+              <button className="button-post" type="submit">
+                Post
+              </button>
+            </div>
+
+            <div className="close-button">
+              <button className="button-close" onClick={closeShown}>
+                {/* <i className="fas fa-times"></i> */}
+                Close
+              </button>
+            </div>
           </div>
         </form>
-        <div className="close-button note-form">
-          <button className="button-close" onClick={closeShown}>
-            <i className="fas fa-times"></i>
-          </button>
-        </div>
       </div>
     </div>
   );

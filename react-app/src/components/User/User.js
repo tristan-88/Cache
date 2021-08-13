@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 function User() {
   const [user, setUser] = useState({});
+  const currentUser = useSelector(state => state.session.user)
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId }  = useParams();
@@ -25,13 +27,13 @@ function User() {
   return (
     <ul>
       <li>
-        <strong>User Id</strong> {userId}
+        <strong>User Id</strong> {currentUser.email}
       </li>
       <li>
-        <strong>Username</strong> {user.username}
+        <strong>Username</strong> {currentUser.username}
       </li>
       <li>
-        <strong>Email</strong> {user.email}
+        <strong>Email</strong> {currentUser.email}
       </li>
     </ul>
   );
