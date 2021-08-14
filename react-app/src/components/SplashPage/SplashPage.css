@@ -24,7 +24,8 @@
 .splash-links{
   display: flex;
   align-content: space-between;
-  
+  justify-content: center;
+  align-items: center;
 }
 
 .signup-link,
@@ -33,4 +34,5 @@
   margin: 0 1rem;
   color: white;
   cursor: pointer;
+  font-size: medium;
 }

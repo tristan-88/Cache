@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory, Redirect } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import DemoButton from "../DemoButton/DemoButton";
 
 function SplashPage() {
   const history = useHistory();
@@ -28,7 +29,8 @@ function SplashPage() {
 
             <NavLink to="/login" className="login-link">
               Log-In
-            </NavLink>
+              </NavLink>
+              <DemoButton />
           </div>
         </div>
       )}
