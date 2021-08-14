@@ -5,7 +5,7 @@ import { editingNote } from "../../../store/note";
 import React, { useState, useEffect } from "react";
 import * as colorAction from "../../../store/color";
 
-const EditForm = ({ note, setEditShown }) => {
+const EditForm = ({ note, setShowModal}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
@@ -33,7 +33,7 @@ const EditForm = ({ note, setEditShown }) => {
       //   setArchived(false);
       //   setPinned(false);
       //   setColor("white");
-      setEditShown(0);
+     setShowModal(0);
     }
   };
 
@@ -49,7 +49,7 @@ const EditForm = ({ note, setEditShown }) => {
   };
 
   const closeShown = () => {
-    setEditShown(0);
+   setShowModal(0);
     // let note = document.getElementsByClassName("form-container");
     // let display = note[0].style.display;
     // if (display === "flex") {

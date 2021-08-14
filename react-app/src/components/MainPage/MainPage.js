@@ -17,6 +17,7 @@ import NoteForm from "../auth/NoteForm/NoteForm";
 // import EditForm from "../auth/NoteForm/EditForm";
 import NavBar from "../NavBar/NavBar";
 import EditFormModal from "../auth/NoteForm/EditForm";
+import { Modal } from "../Modal/Modal";
 
 function MainPage(props) {
   const {
@@ -44,7 +45,8 @@ function MainPage(props) {
   // console.log("Not archived", noteArchived)
   const [isShown, setIsShown] = useState(false);
   const [isEditShown, setEditShown] = useState(0);
-
+  const [showModal, setShowModal] = useState(0)
+ 
   useEffect(() => {
     if (user) {
       getAllNotes();
@@ -133,13 +135,14 @@ function MainPage(props) {
                       key={note.id}
                       className="note-div"
                       style={{ backgroundColor: `${note.color}` }}
-                      onClick={() => handleEdit(note.id)}
+                      onClick={() => setShowModal(note.id)}
                     >
                       <div className="note-content">{note.content}</div>
                     </div>
-                    {isEditShown === note.id && (
-                      <EditFormModal note={note} setEditShown={setEditShown} />
-                    )}
+                    { showModal === note.id && 
+                      <Modal onClose={() => setShowModal(0)}>
+                      <EditFormModal note={note} setShowModal={setShowModal} />
+                    </Modal>}
                   </div>
                 );
               }
@@ -186,12 +189,17 @@ function MainPage(props) {
                       key={note.id}
                       className="note-div"
                       style={{ backgroundColor: `${note.color}` }}
-                      onClick={() => handleEdit(note.id)}
+                      onClick={() => setShowModal(note.id)}
                     >
                       <div className="note-content">{note.content}</div>
                     </div>
-                    {isEditShown === note.id && (
-                      <EditFormModal note={note} setEditShown={setEditShown} />
+                    {showModal === note.id && (
+                      <Modal onClose={() => setShowModal(0)}>
+                        <EditFormModal
+                          note={note}
+                          setShowModal={setShowModal}
+                        />
+                      </Modal>
                     )}
                   </div>
                 );

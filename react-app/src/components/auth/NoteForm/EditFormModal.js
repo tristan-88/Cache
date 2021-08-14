@@ -3,21 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "../../Modal/Modal";
 import EditForm from "./EditForm";
 
-function EditFormModal({ note, setEditShown }) {
-  const modalToggle = (noteId) => {
-    setEditShown(noteId);
-  };
-
-  const closeAll = (noteId) => {
-    setEditShown(noteId);
-  };
+function EditFormModal({ note, setShowModal }) {
+ 
 
   return (
-    <div onClick={() => modalToggle(note.id)}>
-      <Modal onClose={() => closeAll(note.id)}>
-        <EditForm note={note} setEditShow={setEditShown} />
-      </Modal>
-    </div>
+    
+        <EditForm note={note} setShowModal={setShowModal} />
+      
   );
 }
 
