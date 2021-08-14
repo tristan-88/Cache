@@ -42,16 +42,17 @@ const NavBar = () => {
           </div>
           <div className="notes-page">
             <NavLink to="/" exact={true} activeClassName="active">
-              📝 Notes
+              <i class="far fa-lightbulb"></i> Notes
             </NavLink>
           </div>
           <div className="archived-page">
             <NavLink to={`/archived`} exact={true} activeClassName="active">
-              🗃 Archived
+              <i class="fas fa-archive"></i> Archived
             </NavLink>
           </div>
           <div className="log-out-button">
-            ❌<LogoutButton />
+            <i class="fas fa-sign-out-alt"></i>
+            <LogoutButton />
           </div>
         </div>
       )}

@@ -4,3 +4,10 @@
     width: 3em;
     margin: 0 1em;
 }
+
+.user-profile,
+.notes-page,
+.archived-page,
+.log-out-button{
+    margin: 1rem 0;
+}
