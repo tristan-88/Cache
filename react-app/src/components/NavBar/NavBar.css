@@ -10,4 +10,36 @@
 .archived-page,
 .log-out-button{
     margin: 1rem 0;
+
+}
+
+
+.archived-page:hover{
+    background-color: lightgray;
+    padding: 0.5rem 1em;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+.log-out-button:hover{
+    background-color: lightgray;
+    padding: 0.5rem 1em;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+
+}
+
+.notes-page:hover{
+    background-color: lightgray;
+    padding: 0.5rem 1em;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+ a{
+    color:black;
 }
