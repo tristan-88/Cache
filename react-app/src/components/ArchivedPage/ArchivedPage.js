@@ -13,11 +13,14 @@ import {
   getPinnedNotes,
   getArchivedNotes,
 } from "../../store/note";
+import {Modal} from '../Modal/Modal'
+
 
 function ArchivedPage(props) {
   const dispatch = useDispatch();
   const { archived, user, archivedLength } = props;
   const [archiveNoteShown, setArchiveNoteShown] = useState(0);
+  const [showModal, setShowModal] = useState(0)
 
   useEffect(() => {
     if (user) {
@@ -85,15 +88,17 @@ function ArchivedPage(props) {
                       key={note.id}
                       className="note-div"
                       style={{ backgroundColor: `${note.color}` }}
-                      onClick={() => handleArchived(note.id)}
+                      onClick={() => setShowModal(note.id)}
                     >
                       <div className="note-content">{note.content}</div>
                     </div>
-                    {archiveNoteShown === note.id && (
-                      <EditFormModal
-                        note={note}
-                        setEditShown={setArchiveNoteShown}
-                      />
+                    {showModal === note.id && (
+                      <Modal onClose={() => setShowModal(0)}>
+                        <EditFormModal
+                          note={note}
+                          setShowModal={setShowModal}
+                        />
+                      </Modal>
                     )}
                   </div>
                 );

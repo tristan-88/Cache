@@ -13,12 +13,12 @@ const NavBar = () => {
     <nav className="nav-container">
       {!user && (
         <div className="nav-container">
-          <div>
+          <div className="log-in-link">
             <NavLink to="/login" exact={true} activeClassName="active">
               Login
             </NavLink>
           </div>
-          <div>
+          <div className="sign-up-link">
             <NavLink to="/sign-up" exact={true} activeClassName="active">
               Sign Up
             </NavLink>
@@ -27,7 +27,7 @@ const NavBar = () => {
       )}
       {user && (
         <div className="nav-container">
-          <div>
+          <div className="user-profile">
             <NavLink
               to={`/users/${user.id}`}
               exact={true}
@@ -40,17 +40,17 @@ const NavBar = () => {
               />
             </NavLink>
           </div>
-          <div>
+          <div className="notes-page">
             <NavLink to="/" exact={true} activeClassName="active">
-              📝 Main
+              📝 Notes
             </NavLink>
           </div>
-          <div>
+          <div className="archived-page">
             <NavLink to={`/archived`} exact={true} activeClassName="active">
               🗃 Archived
             </NavLink>
           </div>
-          <div>
+          <div className="log-out-button">
             ❌<LogoutButton />
           </div>
         </div>
