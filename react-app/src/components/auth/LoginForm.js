@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, NavLink} from "react-router-dom";
+import { Redirect, NavLink, useHistory} from "react-router-dom";
 import { login } from "../../store/session";
 import "./FormStyle.css";
+import DemoButton from "../DemoButton/DemoButton";
+import { demoLogin } from "../../store/session";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -18,6 +21,13 @@ const LoginForm = () => {
       setErrors(data.errors);
     }
   };
+
+   const onClick = async (e) => {
+        e.preventDefault()
+        await dispatch(demoLogin())
+        history.push("/main")
+
+    }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -66,6 +76,7 @@ const LoginForm = () => {
               <button type="submit" className="signing-button">
                 Login
               </button>
+              <button className="log-in-demo" onClick={onClick}>Demo</button>
               <div className="text">
                 {`Do not have account?`}{" "}
                 <NavLink

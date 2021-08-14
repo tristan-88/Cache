@@ -70,7 +70,8 @@ body{
     margin: 1rem;
 }
 
-.signing-button{
+.signing-button,
+.log-in-demo {
     border: none;
     background: none;
     width: 97%;
@@ -85,6 +86,11 @@ body{
 }
 
 .signing-button:hover{
+    background-color: darkblue;
+    cursor: pointer;
+}
+
+.log-in-demo:hover{
     background-color: darkblue;
     cursor: pointer;
 }
