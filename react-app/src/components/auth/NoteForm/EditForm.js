@@ -1,7 +1,7 @@
 import "./NoteForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import { editingNote } from "../../../store/note";
+import { editingNote, deletingNote} from "../../../store/note";
 import React, { useState, useEffect } from "react";
 import * as colorAction from "../../../store/color";
 
@@ -19,7 +19,9 @@ const EditForm = ({ note, setShowModal}) => {
   const [checkedCircle, setCheckCircle] = useState("white");
   const { settingColor } = colorAction;
 
-  console.log(note);
+  const handleDelete = async (noteId) => {
+    await dispatch(deletingNote(noteId))
+  }
 
   const onEditNote = async (e) => {
     e.preventDefault();
@@ -369,10 +371,18 @@ const EditForm = ({ note, setShowModal}) => {
                 Post
               </button>
             </div>
-
+            {archived ? ( <div className="delete-button note-form">
+              <button
+                className="button-delete"
+                onClick={(e) => handleDelete(note.id)}
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+              
+            ): null}
             <div className="close-button">
               <button className="button-close" onClick={closeShown}>
-                {/* <i className="fas fa-times"></i> */}
                 Close
               </button>
             </div>
