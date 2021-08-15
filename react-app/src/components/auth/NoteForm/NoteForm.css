@@ -79,7 +79,8 @@ input#radioTeal {
 .button-archived,
 .button-pinned,
 .button-post,
-.button-close {
+.button-close,
+.button-delete {
   background: none;
   border: none;
 }
@@ -95,6 +96,8 @@ button.button-close{
 .fas.button-pinned{
     font-size: x-large;
 }
+
+
 
 .close-button {
   display: flex;
@@ -154,4 +157,10 @@ button.button-close{
   color:black;
   opacity: 1; 
   font-size: large;
+}
+
+
+.button-delete .fa-trash-alt:before {
+    content: "\f2ed";
+    font-size: large;
 }
