@@ -80,14 +80,15 @@
 }
 
 .pinned-button,
-.archived-button{
+.archived-button,
+.delete-button{
 background: none;
 border: none;
 
 }
 
 .archived-notes-buttons{
-  display: absolute;
+  display:flex;
   position: absolute;
   align-items: baseline;
   z-index: 100;
@@ -95,6 +96,7 @@ border: none;
   width: 4rem;
   flex-flow: column;
   text-align: -webkit-center;
+  align-items: center;
 }
 
 .archived-button.archive-page .far {
@@ -128,3 +130,6 @@ border: none;
 margin-top: 9rem;
 }
 
+.delete-button .fas{
+  font-size: small;
+}

@@ -32,9 +32,9 @@ const postNote = (note) => ({
   payload: note,
 });
 
-const deleteNote = (noteId) => ({
+const deleteNote = (note) => ({
   type: DELETE_NOTE,
-  payload: noteId,
+  payload: note,
 });
 
 const getArchived = (notes) => ({

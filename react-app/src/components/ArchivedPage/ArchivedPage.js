@@ -12,6 +12,7 @@ import {
   getAllNotes,
   getPinnedNotes,
   getArchivedNotes,
+  deletingNote
 } from "../../store/note";
 import {Modal} from '../Modal/Modal'
 
@@ -43,6 +44,10 @@ function ArchivedPage(props) {
   const handleArchived = (archivedId) => {
     setArchiveNoteShown(archivedId);
   };
+
+  const handleDelete = async (noteId) => {
+    await dispatch(deletingNote(noteId))
+  }
 
   const pinning = (note) => {
     dispatch(pinningNote({ noteId: note.id, archived: note.archived }));
@@ -81,6 +86,12 @@ function ArchivedPage(props) {
                         onClick={() => unarchiving(note)}
                       >
                         <i className="far fa-caret-square-up "></i>
+                      </button>
+                      <button
+                        className="delete-button"
+                        onClick={(e) => handleDelete(note.id)}
+                      >
+                        <i class="fas fa-trash-alt"></i>
                       </button>
                     </div>
 
