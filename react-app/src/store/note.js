@@ -246,8 +246,11 @@ export default function noteReducer(state = initialState, action) {
       );
       //   delete newState.archived[action.payload];
       return newState;
+    
     //cases for add and remove to pinned and archived slice of state 
     //refactored
+
+    //add-pinned
     case ADD_PINNED:
       newState = Object.assign({}, state)
       if (action.payload.archived) {

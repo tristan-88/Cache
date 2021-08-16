@@ -3,6 +3,8 @@ FROM node:12 AS build-stage
 WORKDIR /react-app
 COPY react-app/. .
 
+RUN apt-get update -qq && apt-get install -y build-essential nodejs
+
 # You have to set this because it should be set during build time.
 ENV REACT_APP_BASE_URL=https://cache-keep-clone.herokuapp.com/
 
