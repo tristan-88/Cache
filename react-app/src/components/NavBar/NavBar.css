@@ -45,15 +45,16 @@
 }
 
 .tool-tip .tool-tip-text{
-  visibility: hidden;
-  width: 120px;
+  visibility: hidden;  
+  z-index: 1000000;
+  width: 10rem;
   background-color: black;
   color: #fff;
   text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0;
   position: absolute;
-  z-index: 1000000;
+
 
 }
 
