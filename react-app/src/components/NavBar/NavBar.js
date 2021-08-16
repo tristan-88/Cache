@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LogoutButton from "../auth/LogoutButton";
 import "./NavBar.css";
+import ToolTip from "../ToolTip/ToolTip";
 
 const NavBar = () => {
   const user = useSelector((state) =>
     state.session.user ? state.session.user : null
   );
 
+  const userName = user.username
+  const userEmail = user.email
+
+  const contents = [userName, userEmail]
+  
+  
   return (
     <nav className="nav-container">
       {!user && (
@@ -28,6 +35,7 @@ const NavBar = () => {
       {user && (
         <div className="nav-container">
           <div className="user-profile">
+            <ToolTip contents={contents} />
             <NavLink
               to={`/users/${user.id}`}
               exact={true}
