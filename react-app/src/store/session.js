@@ -75,6 +75,7 @@ export const signUp = (username, email, password) => async (dispatch)=> {
     dispatch(setUser(data));
 }
 
+//setting a demo user 
 export const demoLogin = () => async (dispatch) => {
   const response = await fetch("/api/auth/login", {
     method: "POST",

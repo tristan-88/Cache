@@ -78,6 +78,8 @@ export const getAllNotes = () => async (dispatch) => {
     return response;
   }
 };
+
+//this thunk gets all archived notes that arent pinned or in notes slice of state 
 export const getArchivedNotes = () => async (dispatch) => {
   const response = await axios.get("/api/notes/archive");
   const data = response.data;
@@ -86,6 +88,8 @@ export const getArchivedNotes = () => async (dispatch) => {
     return response;
   }
 };
+
+//this thunk gets all the pinned notes
 export const getPinnedNotes = () => async (dispatch) => {
   const response = await axios.get("/api/notes/pin");
   const data = response.data;
@@ -94,6 +98,8 @@ export const getPinnedNotes = () => async (dispatch) => {
     return response;
   }
 };
+
+//creates a new note
 
 export const postingNote =
   ({ title, content, color, archived, pinned }) =>
@@ -115,8 +121,10 @@ export const postingNote =
     if (response.ok) {
       await dispatch(postNote(data.note));
     }
-  };
+    };
+  
 
+//edits a new note
 export const editingNote =
   ({ noteId, content, title, color, archived, pinned }) =>
   async (dispatch) => {
@@ -137,8 +145,10 @@ export const editingNote =
     if (response.ok) {
       await dispatch(editNote(data.note));
     }
-  };
+    };
+  
 
+//these thunks are use to add and removed them from pinned and archived slice of states
 export const pinningNote =
   ({ noteId, archived }) =>
   async (dispatch) => {
@@ -189,6 +199,8 @@ export const unArchivingNote =
     }
   };
 
+
+//delete a note
 export const deletingNote = (noteId) => async (dispatch) => {
   const response = await fetch(`/api/notes/${noteId}`, {
     method: "DELETE",
@@ -205,9 +217,12 @@ const initialState = {
   pinned: [],
 };
 
+
+//reducer
 export default function noteReducer(state = initialState, action) {
   let newState;
   switch (action.type) {
+    //getting all notes for each slide of states 
     case GET_NOTES:
       return {
         ...state,
@@ -223,6 +238,7 @@ export default function noteReducer(state = initialState, action) {
         ...state,
         pinned: Object.values(action.payload),
       };
+    //delete notes by id by filtering all but that one note and deleting that note
     case DELETE_NOTE:
       newState = Object.assign({}, state);
       newState.archived = state.archived.filter(
@@ -230,6 +246,7 @@ export default function noteReducer(state = initialState, action) {
       );
       //   delete newState.archived[action.payload];
       return newState;
+    
     case ADD_PINNED:
       newState = Object.assign({}, state)
       if (action.payload.archived) {
@@ -258,6 +275,8 @@ export default function noteReducer(state = initialState, action) {
       newState.archived = newState.archived.filter(note => note.id !== action.payload.newNote.id)
       newState.notes.push(action.payload.newNote)
       return newState
+    
+    //edit note
     case EDIT_NOTE:
       newState = Object.assign({}, state);
       newState.notes = newState.notes.filter(note => note.id !== action.payload.id)
@@ -271,6 +290,8 @@ export default function noteReducer(state = initialState, action) {
         newState.notes.push(action.payload)
       }
       return newState;
+    
+    //post note
     case POST_NOTE:
       newState = Object.assign({}, state);
       if (action.payload.archived === true) {
