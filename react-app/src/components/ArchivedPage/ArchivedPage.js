@@ -66,14 +66,14 @@ function ArchivedPage(props) {
 
         <div className="archived-container">
           {archived.length &&
-            archived.map((note) => {
+            archived.map((note, idx) => {
               if (
                 note.archived === true &&
                 note.pinned === false &&
                 user.id === note.user_id
               ) {
                 return (
-                  <div className="note-container">
+                  <div className="note-container" key={`archived-note-${idx}`}>
                     <div className="archived-notes-buttons">
                       <button
                         className="pinned-button"
@@ -91,7 +91,7 @@ function ArchivedPage(props) {
                         className="delete-button"
                         onClick={(e) => handleDelete(note.id)}
                       >
-                        <i class="fas fa-trash-alt"></i>
+                        <i className="fas fa-trash-alt"></i>
                       </button>
                     </div>
 

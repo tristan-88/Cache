@@ -50,16 +50,16 @@ const NavBar = () => {
           </div>
           <div className="notes-page">
             <NavLink to="/" exact={true} activeClassName="active">
-              <i class="far fa-lightbulb"></i> Notes
+              <i className="far fa-lightbulb"></i> Notes
             </NavLink>
           </div>
           <div className="archived-page">
             <NavLink to={`/archived`} exact={true} activeClassName="active">
-              <i class="fas fa-archive"></i> Archived
+              <i className="fas fa-archive"></i> Archived
             </NavLink>
           </div>
           <div className="log-out-button">
-            <i class="fas fa-sign-out-alt"></i>
+            <i className="fas fa-sign-out-alt"></i>
             <LogoutButton />
           </div>
         </div>

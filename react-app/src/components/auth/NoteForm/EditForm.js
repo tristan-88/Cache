@@ -376,7 +376,7 @@ const EditForm = ({ note, setShowModal}) => {
                 className="button-delete"
                 onClick={(e) => handleDelete(note.id)}
               >
-                <i class="fas fa-trash-alt"></i>
+                <i className="fas fa-trash-alt"></i>
               </button>
             </div>
               

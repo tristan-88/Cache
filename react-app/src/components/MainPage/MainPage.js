@@ -100,14 +100,14 @@ function MainPage(props) {
         <h1 className="h1-pinned">Pinned Notes</h1>
         <div className="pinned-container">
           {pinned.length > 0 &&
-            pinned.map((note) => {
+            pinned.map((note, idx) => {
               if (
                 note.archived === false &&
                 note.pinned === true &&
                 user.id === note.user_id
               ) {
                 return (
-                  <div className="note-container">
+                  <div className="note-container" key={`pinned-note-${idx}`}>
                     <div className="main-notes-buttons">
                       <button
                         className="pinned-button main-page"
