@@ -260,6 +260,7 @@ export default function noteReducer(state = initialState, action) {
       }
       newState.pinned.push(action.payload.newNote)
       return newState
+    //remove-pinned notes
     case REMOVED_PINNED:
       newState = Object.assign({}, state)
       newState.pinned = newState.archived.filter(note => note.id !== action.payload.newNote.id)
