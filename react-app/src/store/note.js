@@ -266,6 +266,8 @@ export default function noteReducer(state = initialState, action) {
       newState.pinned = newState.archived.filter(note => note.id !== action.payload.newNote.id)
       newState.notes.push(action.payload.newNote)
       return newState
+
+    //add archived
     case ADD_ARCHIVED:
       newState = Object.assign({}, state)
       if (action.payload.pinned) {
