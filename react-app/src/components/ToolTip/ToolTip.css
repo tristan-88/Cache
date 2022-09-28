@@ -1,6 +1,6 @@
 .tool-tip .tool-tip-text{
   visibility: hidden;
- visibility: hidden;  
+  /* visibility: hidden;   */
   z-index: 1000000;
   width: 7rem;
   background-color: black;
