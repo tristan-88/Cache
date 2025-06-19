@@ -17,10 +17,10 @@ const getNotes = (notes) => ({
   payload: notes,
 });
 
-const getNote = (note) => ({
-  type: GET_NOTE,
-  payload: note,
-});
+// const getNote = (note) => ({
+//   type: GET_NOTE,
+//   payload: note,
+// });
 
 const editNote = (note) => ({
   type: EDIT_NOTE,

@@ -1,13 +1,11 @@
 import "./NoteForm.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
 import { postingNote } from "../../../store/note";
 import React, { useState, useEffect } from "react";
 import * as colorAction from "../../../store/color";
 
 const NoteForm = ({ setIsShown }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const currentColor = useSelector((state) => state.color.setColor);
   const [content, setContent] = useState("");
@@ -15,7 +13,9 @@ const NoteForm = ({ setIsShown }) => {
   const [archived, setArchived] = useState(false);
   const [pinned, setPinned] = useState(false);
   const [color, setColor] = useState("white");
+  // eslint-disable-next-line no-unused-vars
   const [close, setClose] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [checkedCircle, setCheckCircle] = useState("white");
   const { settingColor } = colorAction;
 
@@ -62,9 +62,9 @@ const NoteForm = ({ setIsShown }) => {
     setContent(e.target.value);
   };
 
-  const postColor = (e) => {
-    setColor(e.target.value);
-  };
+  // const postColor = (e) => {
+  //   setColor(e.target.value);
+  // };
 
   const postArchived = (e) => {
     if (archived === false) {
@@ -362,7 +362,6 @@ const NoteForm = ({ setIsShown }) => {
                 Post
               </button>
             </div>
-
             <div className="close-button">
               <button className="button-close" onClick={closeShown}>
                 {/* <i className="fas fa-times"></i> */}

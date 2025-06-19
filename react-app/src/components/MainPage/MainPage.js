@@ -4,8 +4,8 @@ import {
   getPinnedNotes,
   getArchivedNotes,
 } from "../../store/note";
-import { useDispatch, useSelector, connect } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
+import { connect } from "react-redux";
+
 import {
   pinningNote,
   unpinningNote,
@@ -32,7 +32,6 @@ function MainPage(props) {
     pinningNote,
     unpinningNote,
     archivingNote,
-    unArchivingNote,
   } = props;
   //   const notes = useSelector((state) => state.note.notes);
   //   const user = useSelector((state) =>
@@ -83,9 +82,9 @@ function MainPage(props) {
     // }
   };
 
-  const handleEdit = (noteId) => {
-    setEditShown(noteId);
-  };
+  // const handleEdit = (noteId) => {
+  //   setEditShown(noteId);
+  // };
 
   return (
     <div className="main-page-container">
@@ -100,6 +99,7 @@ function MainPage(props) {
         <h1 className="h1-pinned">Pinned Notes</h1>
         <div className="pinned-container">
           {pinned.length > 0 &&
+            // eslint-disable-next-line array-callback-return
             pinned.map((note, idx) => {
               if (
                 note.archived === false &&
@@ -151,6 +151,7 @@ function MainPage(props) {
         <h1 className="h1-notes">Notes</h1>
         <div className="notes-container">
           {notes.length > 0 &&
+            // eslint-disable-next-line array-callback-return
             notes.map((note, idx) => {
               if (
                 note.archived === false &&

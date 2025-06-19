@@ -1,13 +1,11 @@
 import "./SplashPage.css";
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useHistory, Redirect } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
 import DemoButton from "../DemoButton/DemoButton";
 
 function SplashPage() {
   const history = useHistory();
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
   if (user === null) {

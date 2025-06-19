@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink, useHistory} from "react-router-dom";
 import { login } from "../../store/session";
 import "./FormStyle.css";
-import DemoButton from "../DemoButton/DemoButton";
 import { demoLogin } from "../../store/session";
 
 const LoginForm = () => {

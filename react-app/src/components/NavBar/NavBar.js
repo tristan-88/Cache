@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LogoutButton from "../auth/LogoutButton";
 import "./NavBar.css";

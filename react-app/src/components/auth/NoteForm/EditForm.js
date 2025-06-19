@@ -1,21 +1,20 @@
 import "./NoteForm.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
 import { editingNote, deletingNote} from "../../../store/note";
 import React, { useState, useEffect } from "react";
 import * as colorAction from "../../../store/color";
 
 const EditForm = ({ note, setShowModal}) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const user = useSelector((state) => state.session.user);
   const currentColor = useSelector((state) => state.color.setColor);
   const [content, setContent] = useState(note.content);
   const [title, setTitle] = useState(note.title);
   const [archived, setArchived] = useState(note.archived);
   const [pinned, setPinned] = useState(note.pinned);
   const [color, setColor] = useState(note.color);
+  // eslint-disable-next-line no-unused-vars
   const [close, setClose] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [checkedCircle, setCheckCircle] = useState("white");
   const { settingColor } = colorAction;
 
@@ -69,9 +68,9 @@ const EditForm = ({ note, setShowModal}) => {
     setContent(e.target.value);
   };
 
-  const postColor = (e) => {
-    setColor(e.target.value);
-  };
+  // const postColor = (e) => {
+  //   setColor(e.target.value);
+  // };
 
   const postArchived = (e) => {
     if (archived === false && pinned === true) {

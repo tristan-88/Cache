@@ -1,13 +1,10 @@
 import "./ArchivedPage.css";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector, connect } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
+import { useDispatch, connect } from "react-redux";
 import EditFormModal from "../auth/NoteForm/EditForm";
 import NavBar from "../NavBar/NavBar";
 import {
   pinningNote,
-  unpinningNote,
-  archivingNote,
   unArchivingNote,
   getAllNotes,
   getPinnedNotes,
@@ -41,9 +38,9 @@ function ArchivedPage(props) {
     return null;
   }
 
-  const handleArchived = (archivedId) => {
-    setArchiveNoteShown(archivedId);
-  };
+  // const handleArchived = (archivedId) => {
+  //   setArchiveNoteShown(archivedId);
+  // };
 
   const handleDelete = async (noteId) => {
     await dispatch(deletingNote(noteId))
@@ -66,6 +63,7 @@ function ArchivedPage(props) {
 
         <div className="archived-container">
           {archived.length &&
+            // eslint-disable-next-line array-callback-return
             archived.map((note, idx) => {
               if (
                 note.archived === true &&
