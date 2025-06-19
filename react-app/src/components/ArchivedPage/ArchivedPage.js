@@ -17,6 +17,7 @@ import {Modal} from '../Modal/Modal'
 function ArchivedPage(props) {
   const dispatch = useDispatch();
   const { archived, user, archivedLength } = props;
+  // eslint-disable-next-line no-unused-vars
   const [archiveNoteShown, setArchiveNoteShown] = useState(0);
   const [showModal, setShowModal] = useState(0)
 

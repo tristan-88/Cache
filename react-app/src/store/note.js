@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const GET_NOTES = "note/GET_NOTES";
-const GET_NOTE = "note/GET_NOTE";
+// const GET_NOTE = "note/GET_NOTE";
 const DELETE_NOTE = "note/DELETE_NOTE";
 const EDIT_NOTE = "note/EDIT_NOTE";
 const POST_NOTE = "note/POST_NOTE";
